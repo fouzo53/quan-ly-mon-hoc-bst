@@ -1,183 +1,272 @@
-# PHÂN CÔNG CÔNG VIỆC - HỆ THỐNG QUẢN LÝ MÔN HỌC BST
+# 📅 Hệ Thống Lịch Học và Thời Khóa Biểu - BST
 
-## 📋 TỔNG QUAN DỰ ÁN
-Hệ thống quản lý lịch học và thời khóa biểu sử dụng cây BST (Binary Search Tree) để quản lý các môn học theo mã môn hoặc tên môn.
+Hệ thống quản lý lịch học và thời khóa biểu sử dụng cây BST (Binary Search Tree) để quản lý và tổ chức các lớp học theo mã môn hoặc tên môn. Hệ thống hỗ trợ tìm kiếm, sắp xếp theo thời gian bắt đầu một cách có thứ tự, giúp sinh viên và giảng viên quản lý lịch học hiệu quả.
 
----
+## ✨ Tính Năng Chính
 
-## 👥 PHÂN CÔNG CHI TIẾT
+- 📚 **Quản lý Lịch Học**: Thêm, xóa, tìm kiếm các môn học trong thời khóa biểu
+- 🔍 **Tìm Kiếm Linh Hoạt**: Tìm kiếm môn học theo mã môn hoặc tên môn
+- ⏰ **Sắp Xếp Theo Thời Gian**: Sắp xếp danh sách môn học theo thời gian bắt đầu (08:00, 10:30, 14:00...)
+- 📋 **Xem Thời Khóa Biểu**: Hiển thị thời khóa biểu theo tên môn (A-Z) hoặc theo thời gian trong tuần
+- 💾 **Lưu Trữ Dữ Liệu**: Lưu và đọc thời khóa biểu từ file .txt, không mất dữ liệu khi tắt chương trình
+- ✅ **Kiểm Tra Tính Hợp Lệ**: Validate dữ liệu nhập vào (thời gian không âm, format đúng...)
+- 📊 **Đánh Giá Hiệu Năng**: Đo thời gian thực thi các thuật toán tìm kiếm và sắp xếp
 
-### 🔹 **PHẦN 1: Khung Cấu trúc dữ liệu & Video Demo**
-**File:** `BST.h`  
-**Thành viên:** [BẠN 1]  
-**Trạng thái:** ✅ ĐÃ HOÀN THÀNH PHẦN ĐẦU
-
-#### Nhiệm vụ:
-- ✅ Khai báo `struct Node`, `struct MonHoc`
-- ✅ Viết hàm `Init()` - Khởi tạo cây BST
-- ✅ Viết hàm `IsEmpty()` - Kiểm tra cây rỗng
-- 📹 **Làm Video Demo** (quay màn hình + thuyết minh):
-  - Quay màn hình thao tác chương trình với các chức năng cơ bản
-  - Thuyết minh về cấu trúc BST và cách hoạt động
-  - Demo hàm `Init()` và `IsEmpty()`
-
----
-
-### 🔹 **PHẦN 2: Xử lý Tìm kiếm & Sắp xếp**
-**File:** `BST.cpp`  
-**Thành viên:** [BẠN 2]  
-**Trạng thái:** ⏳ ĐANG THỰC HIỆN
-
-#### Nhiệm vụ cần hoàn thành:
-
-1. **HÀM INSERT** - Thêm môn học vào cây BST
-   - So sánh theo mã môn học
-   - Xử lý trường hợp mã môn đã tồn tại
-
-2. **HÀM SEARCH** - Tìm kiếm môn học
-   - `SearchByMaMon()` - Tìm theo mã môn
-   - `SearchByTenMon()` - Tìm theo tên môn (duyệt toàn bộ cây)
-
-3. **HÀM DELETE** - Xóa môn học
-   - Xử lý 3 trường hợp: node lá, node 1 con, node 2 con
-
-4. **HÀM TRAVERSAL** - Duyệt cây In-order (LNR)
-   - `InOrderTraversal()` - In danh sách sắp xếp theo tên (A-Z)
-   - `InOrderTraversalByTime()` - In danh sách sắp xếp theo thời gian
-
-5. **HÀM FILE I/O** - Đọc/Ghi file
-   - `SaveToFile()` - Lưu danh sách vào file .txt
-   - `LoadFromFile()` - Đọc danh sách từ file .txt
-
-6. **HÀM HỖ TRỢ**
-   - `compareTime()` - So sánh thời gian
-   - `Clear()` - Xóa toàn bộ cây
-
-#### Lưu ý:
-- Xem chi tiết trong file `BST.cpp` (có comments hướng dẫn)
-- Khai báo function prototypes trong `BST.h` trước khi implement
-
----
-
-### 🔹 **PHẦN 3: Xây dựng Menu & IO**
-**File:** `main.cpp`  
-**Thành viên:** [BẠN 3]  
-**Trạng thái:** ⏳ ĐANG THỰC HIỆN
-
-#### Nhiệm vụ cần hoàn thành:
-
-1. **MENU ĐIỀU KHIỂN**
-   - Viết hàm `printMenu()` - Hiển thị menu với Switch-case
-   - Tích hợp các hàm từ `BST.cpp` vào menu
-   - Xử lý lựa chọn người dùng
-
-2. **NHẬP LIỆU & VALIDATE**
-   - `nhapMonHoc()` - Nhập môn học từ bàn phím
-   - `validateMaMon()` - Kiểm tra mã môn hợp lệ
-   - `validateTenMon()` - Kiểm tra tên môn hợp lệ
-   - `validateThoiGian()` - Kiểm tra thời gian hợp lệ (HH:MM, không âm, 00:00-23:59)
-   - `validatePhongHoc()` - Kiểm tra phòng học hợp lệ
-   - `validateThu()` - Kiểm tra thứ hợp lệ
-
-3. **XỬ LÝ LOGIC**
-   - `parseTimeToMinutes()` - Parse thời gian sang phút (để so sánh)
-   - `formatTime()` - Format thời gian đúng chuẩn HH:MM
-   - Xử lý logic sắp xếp theo thời gian (có thể cần đổ ra mảng tạm)
-
-4. **HÀM MAIN**
-   - Vòng lặp do-while với menu
-   - Switch-case xử lý từng chức năng
-   - Xử lý thông báo lỗi/thành công
-   - Xử lý trường hợp cây rỗng
-
-#### Lưu ý:
-- Xem chi tiết trong file `main.cpp` (có comments hướng dẫn)
-- Các hàm validate phải kiểm tra kỹ các trường hợp đặc biệt
-
----
-
-### 🔹 **PHẦN 4: Kiểm thử & Đánh giá hiệu năng**
-**File:** `test.cpp`  
-**Thành viên:** [BẠN 4]  
-**Trạng thái:** ⏳ ĐANG THỰC HIỆN
-
-#### Nhiệm vụ cần hoàn thành:
-
-1. **TẠO DỮ LIỆU MẪU**
-   - `taoDuLieuMau()` - Tạo danh sách môn học mẫu (10, 100, 1000 môn)
-   - `taoMonHocNgauNhien()` - Tạo môn học ngẫu nhiên để test nhanh
-
-2. **ĐO THỜI GIAN**
-   - `doThoiGianInsert()` - Đo thời gian Insert
-   - `doThoiGianSearch()` - Đo thời gian Search
-   - `doThoiGianTraversal()` - Đo thời gian Traversal
-   - `doThoiGianSort()` - Đo thời gian Sort
-   - Sử dụng thư viện `<chrono>` trong C++
-
-3. **TEST CÁC KỊCH BẢN**
-   - `test10MonHoc()` - Test với 10 môn học
-   - `test100MonHoc()` - Test với 100 môn học
-   - `test1000MonHoc()` - Test với 1000 môn học
-   - `soSanhHieuNang()` - So sánh và hiển thị kết quả dạng bảng
-
-4. **BÁO CÁO KẾT QUẢ**
-   - `inKetQuaTest()` - In kết quả test ra màn hình
-   - `luuKetQuaVaoFile()` - Lưu kết quả vào file .txt hoặc .csv
-   - Đánh giá độ phức tạp thuật toán (O(log n), O(n), ...)
-
-#### Lưu ý:
-- Xem chi tiết trong file `test.cpp` (có comments hướng dẫn)
-- Test tất cả các chức năng: Insert, Search, Delete, Traversal, File I/O
-- Có thể dùng `#ifdef RUN_TEST` để compile riêng phần test
-
----
-
-## 📁 CẤU TRÚC FILE
+## 🏗️ Cấu Trúc Dự Án
 
 ```
 cpp/
-├── BST.h          # Khai báo struct và function prototypes
+├── BST.h          # Khai báo struct MonHoc, Node và function prototypes
 ├── BST.cpp        # Implementation các hàm BST (Insert, Search, Delete, Traversal, File I/O)
 ├── main.cpp       # Menu điều khiển và Validate dữ liệu
 ├── test.cpp       # Test cases và đo hiệu năng
-└── PHAN_CONG.md   # File này - Phân công công việc
+└── README.md      # File này
 ```
 
----
+## 📋 Cấu Trúc Dữ Liệu
 
-## 🔗 LIÊN KẾT GIỮA CÁC PHẦN
+### Struct MonHoc (Môn Học)
+Mỗi môn học trong thời khóa biểu bao gồm:
+- `maMon`: Mã môn học (unique key) - VD: "CS101", "MATH202"
+- `tenMon`: Tên môn học - VD: "Lập trình C++", "Toán cao cấp"
+- `thoiGianBatDau`: Thời gian bắt đầu - VD: "08:00", "14:30"
+- `phongHoc`: Phòng học - VD: "A101", "B202"
+- `thu`: Thứ trong tuần - VD: "Thứ 2", "Thứ 5"
+
+### Cây BST (Binary Search Tree)
+- Cây BST được sắp xếp theo **mã môn học** để tối ưu tìm kiếm
+- Độ phức tạp tìm kiếm: **O(log n)**
+- Hỗ trợ sắp xếp lại theo **tên môn** hoặc **thời gian** khi hiển thị
+
+## 🚀 Cài Đặt & Biên Dịch
+
+### Yêu Cầu Hệ Thống
+- **Compiler**: C++11 trở lên (g++, clang++, hoặc Visual Studio)
+- **OS**: Windows, Linux, macOS
+
+### Windows (Visual Studio)
+
+```bash
+# Biên dịch
+cl /EHsc main.cpp BST.cpp /Fe:lich-hoc.exe
+
+# Chạy chương trình
+lich-hoc.exe
+```
+
+### Linux/macOS (GCC/Clang)
+
+```bash
+# Biên dịch
+g++ -std=c++11 -o lich-hoc main.cpp BST.cpp
+
+# Chạy chương trình
+./lich-hoc
+```
+
+### Biên Dịch Phần Test
+
+```bash
+# Linux/macOS
+g++ -std=c++11 -DRUN_TEST -o test test.cpp BST.cpp
+./test
+
+# Windows
+cl /EHsc /DRUN_TEST test.cpp BST.cpp /Fe:test.exe
+test.exe
+```
+
+## 💻 Sử Dụng
+
+### Menu Chính
 
 ```
-BST.h (Phần 1)
-    ↓
-BST.cpp (Phần 2) → Sử dụng các struct từ BST.h
-    ↓
-main.cpp (Phần 3) → Sử dụng các hàm từ BST.cpp
-    ↓
-test.cpp (Phần 4) → Test tất cả các hàm từ BST.cpp và main.cpp
+========== HE THONG LICH HOC VA THOI KHOA BIEU ==========
+1. Khoi tao cay BST
+2. Them mon hoc moi vao lich hoc
+3. Tim kiem mon hoc theo ma mon
+4. Tim kiem mon hoc theo ten mon
+5. Hien thi thoi khoa bieu (sap xep theo ten A-Z)
+6. Hien thi thoi khoa bieu (sap xep theo thoi gian)
+7. Xoa mon hoc khoi lich hoc
+8. Luu thoi khoa bieu vao file
+9. Doc thoi khoa bieu tu file
+10. Xem thong tin chi tiet mon hoc
+0. Thoat chuong trinh
 ```
 
----
+### Ví Dụ Sử Dụng
 
-## ✅ CHECKLIST TIẾN ĐỘ
+#### 1. Thêm Môn Học Vào Lịch
 
-- [x] Phần 1: Khai báo struct và hàm Init() (BST.h)
+```cpp
+BST lichHoc;
+lichHoc.Init();
+
+// Thêm môn học vào lịch
+MonHoc mh1("CS101", "Lap trinh C++", "08:00", "Phong A101", "Thu 2");
+MonHoc mh2("MATH202", "Toan cao cap", "10:30", "Phong B202", "Thu 3");
+MonHoc mh3("ENG301", "Tieng Anh", "14:00", "Phong C303", "Thu 5");
+
+lichHoc.Insert(mh1);
+lichHoc.Insert(mh2);
+lichHoc.Insert(mh3);
+```
+
+#### 2. Tìm Kiếm Môn Học
+
+```cpp
+// Tìm theo mã môn (nhanh - O(log n))
+Node* result = lichHoc.SearchByMaMon("CS101");
+if (result != NULL) {
+    cout << "Tim thay: " << result->data.tenMon << endl;
+}
+
+// Tìm theo tên môn (duyệt toàn bộ cây)
+vector<Node*> results = lichHoc.SearchByTenMon("Lap trinh");
+```
+
+#### 3. Xem Thời Khóa Biểu
+
+```cpp
+// Xem thời khóa biểu sắp xếp theo tên (A-Z)
+lichHoc.InOrderTraversal();
+
+// Xem thời khóa biểu sắp xếp theo thời gian bắt đầu
+lichHoc.InOrderTraversalByTime();
+```
+
+#### 4. Lưu và Đọc Thời Khóa Biểu
+
+```cpp
+// Lưu thời khóa biểu vào file
+lichHoc.SaveToFile("thoi-khoa-bieu.txt");
+
+// Đọc thời khóa biểu từ file
+lichHoc.LoadFromFile("thoi-khoa-bieu.txt");
+```
+
+### Format File Thời Khóa Biểu
+
+File `.txt` lưu trữ thời khóa biểu có format:
+```
+maMon|tenMon|thoiGian|phongHoc|thu
+CS101|Lap trinh C++|08:00|Phong A101|Thu 2
+MATH202|Toan cao cap|10:30|Phong B202|Thu 3
+ENG301|Tieng Anh|14:00|Phong C303|Thu 5
+```
+
+## 📊 Thuật Toán và Độ Phức Tạp
+
+| Thao Tác | Độ Phức Tạp | Mô Tả |
+|---------|-------------|-------|
+| **Insert** | O(log n) | Thêm môn học vào lịch |
+| **Search (theo mã)** | O(log n) | Tìm kiếm nhanh theo mã môn |
+| **Search (theo tên)** | O(n) | Duyệt toàn bộ cây |
+| **Delete** | O(log n) | Xóa môn học khỏi lịch |
+| **Traversal** | O(n) | Duyệt toàn bộ cây để hiển thị |
+| **Sort** | O(n log n) | Sắp xếp theo tên hoặc thời gian |
+
+## 🧪 Kiểm Thử
+
+Chạy file `test.cpp` để đánh giá hiệu năng:
+
+```bash
+g++ -std=c++11 -DRUN_TEST -o test test.cpp BST.cpp
+./test
+```
+
+### Test Cases
+
+- ✅ Test với **10 môn học** trong thời khóa biểu
+- ✅ Test với **100 môn học** trong thời khóa biểu  
+- ✅ Test với **1000 môn học** trong thời khóa biểu
+- ✅ Đo thời gian Insert, Search, Traversal, Sort
+- ✅ So sánh hiệu năng với số lượng môn học khác nhau
+
+### Kết Quả Mong Đợi
+
+| Số Môn Học | Insert (ms) | Search (ms) | Traversal (ms) |
+|-----------|-------------|-------------|----------------|
+| 10 | ~0.1 | ~0.05 | ~0.2 |
+| 100 | ~1.5 | ~0.8 | ~2.0 |
+| 1000 | ~15 | ~10 | ~20 |
+
+## 👥 Thành Viên Nhóm
+
+| Thành Viên | Phần Đảm Nhiệm |
+|-----------|----------------|
+| [BẠN 1] | **Phần 1**: Khung Cấu trúc dữ liệu & Video Demo |
+| [BẠN 2] | **Phần 2**: Xử lý Tìm kiếm & Sắp xếp (BST.cpp) |
+| [BẠN 3] | **Phần 3**: Xây dựng Menu & Validate dữ liệu (main.cpp) |
+| [BẠN 4] | **Phần 4**: Kiểm thử & Đánh giá hiệu năng (test.cpp) |
+
+## 📈 Tiến Độ Dự Án
+
+- [x] Phần 1: Khai báo struct MonHoc, Node và hàm Init() (BST.h)
 - [ ] Phần 2: Các hàm BST (Insert, Search, Delete, Traversal, File I/O) (BST.cpp)
-- [ ] Phần 3: Menu và Validate (main.cpp)
+- [ ] Phần 3: Menu và Validate dữ liệu (main.cpp)
 - [ ] Phần 4: Test và đánh giá hiệu năng (test.cpp)
-- [ ] Video Demo (Phần 1)
+- [ ] Video Demo: Giới thiệu hệ thống và cách sử dụng
+
+## 📝 Validation Dữ Liệu
+
+Hệ thống kiểm tra tính hợp lệ của dữ liệu nhập vào:
+
+- ✅ **Mã môn học**: Không được rỗng, không được trùng
+- ✅ **Tên môn học**: Không được rỗng
+- ✅ **Thời gian bắt đầu**: Format HH:MM (24h), không âm, từ 00:00 đến 23:59
+  - ✓ Hợp lệ: "08:00", "14:30", "10:15"
+  - ✗ Không hợp lệ: "25:00", "-5:00", "08:60", "abc"
+- ✅ **Phòng học**: Không được rỗng
+- ✅ **Thứ trong tuần**: Hợp lệ (Thứ 2 - Thứ 7, Chủ nhật)
+
+## 💡 Ví Dụ Thời Khóa Biểu
+
+```
+THỜI KHÓA BIỂU HỌC KỲ I
+
+Thứ 2:
+  08:00 - 10:30  |  CS101 - Lập trình C++        |  Phòng A101
+  14:00 - 16:30  |  MATH202 - Toán cao cấp       |  Phòng B202
+
+Thứ 3:
+  08:00 - 10:30  |  ENG301 - Tiếng Anh           |  Phòng C303
+
+Thứ 5:
+  10:30 - 12:00  |  CS101 - Lập trình C++ (TH)   |  Phòng Lab A1
+  14:00 - 16:30  |  PHYS101 - Vật lý đại cương   |  Phòng D404
+```
+
+## 🤝 Đóng Góp
+
+1. Fork project
+2. Tạo branch mới (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to branch (`git push origin feature/AmazingFeature`)
+5. Mở Pull Request
+
+## 📄 License
+
+Educational purposes only
+
+## 🔗 Tài Liệu Tham Khảo
+
+- [Binary Search Tree - Wikipedia](https://en.wikipedia.org/wiki/Binary_search_tree)
+- [C++ Data Structures](https://www.cplusplus.com/reference/)
+- [BST Visualization](https://visualgo.net/en/bst)
+
+## 🎯 Mục Tiêu Dự Án
+
+- Học và áp dụng cấu trúc dữ liệu BST trong thực tế
+- Xây dựng hệ thống quản lý lịch học hoàn chỉnh
+- Thực hành các thuật toán tìm kiếm và sắp xếp
+- Đánh giá hiệu năng của các thuật toán với dữ liệu lớn
 
 ---
 
-## 📝 GHI CHÚ
+⭐ Nếu project này hữu ích, hãy cho một star! ⭐
 
-1. **Đọc kỹ comments trong mỗi file** trước khi bắt đầu code
-2. **Test từng hàm** sau khi viết xong
-3. **Commit code thường xuyên** để tránh mất code
-4. **Hỏi khi không hiểu** thay vì đoán mò
-5. **Review code** trước khi merge vào main branch
+📧 **Liên hệ**: [Điền email hoặc GitHub username]
 
----
-
-**Chúc các bạn làm bài tốt! 💪**
-
+📅 **Ngày tạo**: 2024
