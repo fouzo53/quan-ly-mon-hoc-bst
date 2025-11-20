@@ -8,19 +8,24 @@ using namespace std;
 
 /*
 ================================================================================
-PHẦN 1: KHUNG CẤU TRÚC DỮ LIỆU
+PHẦN 1: KHUNG CẤU TRÚC DỮ LIỆU - HỆ THỐNG LỊCH HỌC VÀ THỜI KHÓA BIỂU
 ================================================================================
-THÀNH VIÊN PHỤ TRÁCH: [Điền tên]
+THÀNH VIÊN PHỤ TRÁCH: [BẠN 1]
 
 NHIỆM VỤ:
-- Đã hoàn thành: Khai báo struct Node, struct MonHoc
-- Đã hoàn thành: Hàm Init() - Khởi tạo cây BST
-- Đã hoàn thành: Hàm IsEmpty() - Kiểm tra cây rỗng
+- Đã hoàn thành: Khai báo struct Node, struct MonHoc (lưu thông tin môn học trong lịch)
+- Đã hoàn thành: Hàm Init() - Khởi tạo cây BST để lưu trữ thời khóa biểu
+- Đã hoàn thành: Hàm IsEmpty() - Kiểm tra cây rỗng (kiểm tra có môn học nào trong lịch không)
 
 DEMO VIDEO:
 - Quay màn hình thao tác chương trình với các chức năng cơ bản
-- Thuyết minh về cấu trúc BST và cách hoạt động
-- Test hàm Init() và IsEmpty()
+- Thuyết minh về cấu trúc BST và cách quản lý lịch học
+- Demo hàm Init() và IsEmpty() với hệ thống thời khóa biểu
+
+MỤC ĐÍCH:
+- Cây BST được sử dụng để quản lý các môn học trong lịch học
+- Cây sắp xếp theo mã môn học để tìm kiếm nhanh
+- Hỗ trợ hiển thị thời khóa biểu theo thời gian bắt đầu
 
 ================================================================================
 KHÁI BÁO THÊM CÁC HÀM CẦN THIẾT:
@@ -29,13 +34,13 @@ Lưu ý: Chỉ khai báo function prototypes ở đây (không viết code imple
 Các hàm được khai báo ở đây sẽ được implement trong BST.cpp
 */
 
-// cấu trúc môn học
+// cấu trúc môn học trong lịch học và thời khóa biểu
 struct MonHoc {
-    string maMon;          // mã môn học
+    string maMon;          // mã môn học (unique key để sắp xếp trong BST)
     string tenMon;         // tên môn học
-    string thoiGianBatDau; // thời gian bắt đầu (VD: "08:00", "14:30")
+    string thoiGianBatDau; // thời gian bắt đầu trong thời khóa biểu (VD: "08:00", "14:30")
     string phongHoc;       // phòng học
-    string thu;            // thứ trong tuần (VD: "Thứ 2", "Thứ 3")
+    string thu;            // thứ trong tuần của lịch học (VD: "Thứ 2", "Thứ 3")
     
     // constructor để khởi tạo môn học
     MonHoc() {}
@@ -80,26 +85,26 @@ struct BST {
     // ==================== KHAI BÁO CÁC HÀM CẦN THIẾT ====================
     // TODO: Thêm các khai báo hàm sau (chỉ khai báo, không viết code):
     
-    // Hàm Insert - Thêm môn học vào cây
+    // Hàm Insert - Thêm môn học vào lịch học
     // bool Insert(MonHoc mh);
     
-    // Hàm Search - Tìm kiếm môn học
-    // Node* SearchByMaMon(string maMon);
-    // vector<Node*> SearchByTenMon(string tenMon);
+    // Hàm Search - Tìm kiếm môn học trong thời khóa biểu
+    // Node* SearchByMaMon(string maMon);  // Tìm theo mã môn (nhanh - O(log n))
+    // vector<Node*> SearchByTenMon(string tenMon);  // Tìm theo tên môn (duyệt toàn bộ cây)
     
-    // Hàm Delete - Xóa môn học
+    // Hàm Delete - Xóa môn học khỏi lịch học
     // bool Delete(string maMon);
     
-    // Hàm Traversal - Duyệt cây
-    // void InOrderTraversal();  // Sắp xếp theo tên
-    // void InOrderTraversalByTime();  // Sắp xếp theo thời gian
+    // Hàm Traversal - Duyệt cây và hiển thị thời khóa biểu
+    // void InOrderTraversal();  // Hiển thị danh sách môn học sắp xếp theo tên (A-Z)
+    // void InOrderTraversalByTime();  // Hiển thị thời khóa biểu sắp xếp theo thời gian bắt đầu
     
-    // Hàm File I/O
-    // bool SaveToFile(string fileName);
-    // int LoadFromFile(string fileName);
+    // Hàm File I/O - Lưu và đọc thời khóa biểu
+    // bool SaveToFile(string fileName);  // Lưu thời khóa biểu vào file .txt
+    // int LoadFromFile(string fileName);  // Đọc thời khóa biểu từ file .txt
     
     // Hàm hỗ trợ
-    // void Clear();  // Xóa toàn bộ cây
+    // void Clear();  // Xóa toàn bộ cây (xóa toàn bộ lịch học)
 };
 
 // Hàm hỗ trợ so sánh thời gian (khai báo ngoài struct)

@@ -11,15 +11,15 @@ using namespace std::chrono;
 
 /*
 ================================================================================
-PHẦN 4: KIỂM THỬ & ĐÁNH GIÁ HIỆU NĂNG
+PHẦN 4: KIỂM THỬ & ĐÁNH GIÁ HIỆU NĂNG - HỆ THỐNG LỊCH HỌC VÀ THỜI KHÓA BIỂU
 ================================================================================
-THÀNH VIÊN PHỤ TRÁCH: [Điền tên]
+THÀNH VIÊN PHỤ TRÁCH: [BẠN 4]
 
 NHIỆM VỤ:
-1. Tạo bộ dữ liệu mẫu (Test case): 10 môn, 100 môn, 1000 môn
-2. Đo thời gian chạy của các thuật toán (tìm kiếm, sắp xếp)
-3. Code hàm tạo dữ liệu ngẫu nhiên để test nhanh
-4. Đánh giá và báo cáo hiệu năng
+1. Tạo bộ dữ liệu mẫu (Test case): 10 môn, 100 môn, 1000 môn trong lịch học
+2. Đo thời gian chạy của các thuật toán (tìm kiếm môn học, sắp xếp thời khóa biểu)
+3. Code hàm tạo dữ liệu ngẫu nhiên để test nhanh (môn học, thời gian, phòng, thứ)
+4. Đánh giá và báo cáo hiệu năng của hệ thống quản lý lịch học
 
 ================================================================================
 CÁC HÀM CẦN VIẾT:
@@ -33,13 +33,13 @@ CÁC HÀM CẦN VIẾT:
 // - Tạo các môn học với mã, tên, thời gian, phòng, thứ hợp lệ
 // - Trả về vector chứa các MonHoc
 
-// TODO: Viết hàm tạo môn học ngẫu nhiên
+// TODO: Viết hàm tạo môn học ngẫu nhiên để test lịch học
 // MonHoc taoMonHocNgauNhien(int index) { ... }
-// - Dùng random để tạo mã môn (VD: "CS001", "MATH002", ...)
-// - Dùng random để tạo tên môn (có thể dùng danh sách tên có sẵn)
-// - Dùng random để tạo thời gian (07:00 - 17:00)
-// - Dùng random để tạo phòng (VD: "A101", "B202", ...)
-// - Dùng random để tạo thứ (Thu 2 - Chu nhat)
+// - Dùng random để tạo mã môn (VD: "CS001", "MATH002", "ENG003", ...)
+// - Dùng random để tạo tên môn (có thể dùng danh sách tên có sẵn: "Lập trình", "Toán", "Tiếng Anh"...)
+// - Dùng random để tạo thời gian bắt đầu (07:00 - 17:00) - giờ học hợp lệ trong ngày
+// - Dùng random để tạo phòng (VD: "A101", "B202", "C303", ...)
+// - Dùng random để tạo thứ trong tuần (Thu 2 - Chu nhat) - phân bổ đều trong tuần
 
 // ==================== HÀM ĐO THỜI GIAN ====================
 // TODO: Viết hàm đo thời gian Insert
@@ -102,6 +102,7 @@ CÁC HÀM CẦN VIẾT:
 int main() {
     cout << "========================================" << endl;
     cout << "KIEM THU VA DANH GIA HIEU NANG" << endl;
+    cout << "HE THONG LICH HOC VA THOI KHOA BIEU" << endl;
     cout << "========================================" << endl;
     
     // TODO: Gọi các hàm test
@@ -119,40 +120,45 @@ int main() {
 GỢI Ý TEST CASES:
 ================================================================================
 
-1. Test Insert:
-   - Insert vào cây rỗng
-   - Insert với mã đã tồn tại (phải báo lỗi)
-   - Insert nhiều phần tử (10, 100, 1000)
-   - Đo thời gian Insert từng phần tử và tổng thời gian
+1. Test Insert - Thêm môn học vào lịch:
+   - Insert vào cây rỗng (khởi tạo lịch học mới)
+   - Insert với mã đã tồn tại (phải báo lỗi - không cho trùng mã môn)
+   - Insert nhiều môn học vào lịch (10, 100, 1000 môn)
+   - Đo thời gian Insert từng môn học và tổng thời gian xây dựng lịch học
 
-2. Test Search:
-   - Search với mã tồn tại
-   - Search với mã không tồn tại
-   - Search với tên tồn tại (có thể nhiều kết quả)
-   - Đo thời gian search trong cây 10, 100, 1000 phần tử
+2. Test Search - Tìm kiếm môn học trong thời khóa biểu:
+   - Search với mã tồn tại trong lịch
+   - Search với mã không tồn tại trong lịch
+   - Search với tên môn tồn tại (có thể nhiều môn cùng tên trong lịch)
+   - Đo thời gian search trong lịch có 10, 100, 1000 môn học
 
-3. Test Delete:
-   - Delete node lá
+3. Test Delete - Xóa môn học khỏi lịch:
+   - Delete node lá (xóa môn học đơn giản)
    - Delete node có 1 con
    - Delete node có 2 con
-   - Delete với mã không tồn tại
-   - Đo thời gian delete
+   - Delete với mã không tồn tại trong lịch
+   - Đo thời gian delete môn học khỏi lịch
 
-4. Test Traversal:
-   - In danh sách theo thứ tự tên (A-Z)
-   - In danh sách theo thứ tự thời gian
-   - Đo thời gian traversal
+4. Test Traversal - Hiển thị thời khóa biểu:
+   - In danh sách môn học theo thứ tự tên (A-Z)
+   - In thời khóa biểu theo thứ tự thời gian bắt đầu
+   - Đo thời gian duyệt và hiển thị lịch học
 
-5. Test File I/O:
-   - Lưu và đọc file với 10, 100, 1000 môn
-   - Kiểm tra tính toàn vẹn dữ liệu
+5. Test File I/O - Lưu và đọc thời khóa biểu:
+   - Lưu và đọc file với 10, 100, 1000 môn học
+   - Kiểm tra tính toàn vẹn dữ liệu (không mất thông tin khi lưu/đọc)
+   - Đo thời gian lưu và đọc thời khóa biểu
 
 ================================================================================
 BÁO CÁO CẦN CÓ:
 ================================================================================
-1. Bảng so sánh thời gian với 10, 100, 1000 môn học
-2. Đánh giá độ phức tạp: O(log n), O(n), ...
-3. Biểu đồ thời gian (nếu có thể)
-4. Kết luận về hiệu năng của từng thuật toán
+1. Bảng so sánh thời gian với 10, 100, 1000 môn học trong lịch học
+2. Đánh giá độ phức tạp của các thuật toán: O(log n), O(n), ...
+   - Insert: O(log n) - Thêm môn học vào lịch
+   - Search theo mã: O(log n) - Tìm kiếm nhanh trong lịch
+   - Search theo tên: O(n) - Duyệt toàn bộ lịch
+   - Traversal: O(n) - Hiển thị toàn bộ thời khóa biểu
+3. Biểu đồ thời gian (nếu có thể) để so sánh hiệu năng
+4. Kết luận về hiệu năng của từng thuật toán trong hệ thống quản lý lịch học
 */
 
