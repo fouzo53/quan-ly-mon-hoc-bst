@@ -10,7 +10,7 @@ Hệ thống quản lý lịch học và thời khóa biểu sử dụng cây BS
 ### 🔹 **PHẦN 1: Khung Cấu trúc dữ liệu & Video Demo**
 **File:** `BST.h`  
 **Thành viên:** [BẠN 1]  
-**Trạng thái:** ✅ ĐÃ HOÀN THÀNH
+**Trạng thái:** ✅ ĐÃ HOÀN THÀNH PHẦN ĐẦU
 
 #### Nhiệm vụ:
 - ✅ Khai báo `struct Node`, `struct MonHoc`
