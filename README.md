@@ -1,6 +1,6 @@
 # 📅 Hệ Thống Lịch Học và Thời Khóa Biểu - BST
 
-Hệ thống quản lý lịch học và thời khóa biểu sử dụng cây BST (Binary Search Tree) để quản lý và tổ chức các lớp học theo mã môn hoặc tên môn. Hệ thống hỗ trợ tìm kiếm, sắp xếp theo thời gian bắt đầu một cách có thứ tự, giúp sinh viên và giảng viên quản lý lịch học hiệu quả.
+Hệ thống quản lý lịch học và thời khóa biểu sử dụng cây BST (Binary Search Tree) để quản lý và tổ chức các lớp học theo mã môn hoặc tên môn. Hệ thống hỗ trợ tìm kiếm, sắp xếp theo thời gian bắt đầu một cách có thứ tự, giúp sinh viên và giảng viên quản lý lịch học hiệu quả. (repo này được tạo ra nhằm quản lý các files, sau khi nộp bài xong thì repo này có thể sẽ ẩn/xóa đi)
 
 ## ✨ Tính Năng Chính
 
