@@ -204,7 +204,7 @@ g++ -std=c++11 -DRUN_TEST -o test test.cpp BST.cpp
 ## 📈 Tiến Độ Dự Án
 
 - [x] Phần 1: Khai báo struct MonHoc, Node và hàm Init() (BST.h)
-- [ ] Phần 2: Các hàm BST (Insert, Search, Delete, Traversal, File I/O) (BST.cpp)
+- [x] Phần 2: Các hàm BST (Insert, Search, Delete, Traversal, File I/O) (BST.cpp)
 - [ ] Phần 3: Menu và Validate dữ liệu (main.cpp)
 - [ ] Phần 4: Test và đánh giá hiệu năng (test.cpp)
 - [ ] Video Demo: Giới thiệu hệ thống và cách sử dụng
