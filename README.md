@@ -58,10 +58,10 @@ lich-hoc.exe
 
 ```bash
 # Biên dịch
-g++ -std=c++11 -o lich-hoc main.cpp BST.cpp
+g++ BST.cpp BST.h main.cpp -o lich-hoc.exe
 
 # Chạy chương trình
-./lich-hoc
+./lich-hoc.exe
 ```
 
 ### Biên Dịch Phần Test
@@ -82,16 +82,13 @@ test.exe
 
 ```
 ========== HE THONG LICH HOC VA THOI KHOA BIEU ==========
-1. Khoi tao cay BST
-2. Them mon hoc moi vao lich hoc
-3. Tim kiem mon hoc theo ma mon
-4. Tim kiem mon hoc theo ten mon
-5. Hien thi thoi khoa bieu (sap xep theo ten A-Z)
-6. Hien thi thoi khoa bieu (sap xep theo thoi gian)
-7. Xoa mon hoc khoi lich hoc
-8. Luu thoi khoa bieu vao file
-9. Doc thoi khoa bieu tu file
-10. Xem thong tin chi tiet mon hoc
+1. Them mon hoc moi vao lich hoc
+2. Tim kiem mon hoc (theo ma mon)
+3. Tim kiem mon hoc (theo ten mon)
+4. Cap nhap thong tin mon hon
+5. Xoa mon hoc khoi lich hoc
+6. Hien thi thoi khoa bieu (A-Z)
+7. Hien thi thoi khoa bieu (theo thoi gian bat dau)
 0. Thoat chuong trinh
 ```
 
@@ -150,10 +147,23 @@ lichHoc.LoadFromFile("thoi-khoa-bieu.txt");
 
 File `.txt` lưu trữ thời khóa biểu có format:
 ```
-maMon|tenMon|thoiGian|phongHoc|thu
-CS101|Lap trinh C++|08:00|Phong A101|Thu 2
-MATH202|Toan cao cap|10:30|Phong B202|Thu 3
-ENG301|Tieng Anh|14:00|Phong C303|Thu 5
+maMon: CS101
+tenMon: Lap trinh C++
+thoiGian: 08:00
+phongHoc: A101
+thu: Thu 2
+
+maMon: MATH202
+tenMon: Toan cao cap
+thoiGian: 10:30
+phongHoc: B202
+thu: Thu 3
+
+maMon: ENG301
+tenMon: Tieng Anh
+thoiGian: 14:00
+phongHoc: C303
+thu: Thu 5
 ```
 
 ## 📊 Thuật Toán và Độ Phức Tạp
@@ -205,7 +215,7 @@ g++ -std=c++11 -DRUN_TEST -o test test.cpp BST.cpp
 
 - [x] Phần 1: Khai báo struct MonHoc, Node và hàm Init() (BST.h)
 - [x] Phần 2: Các hàm BST (Insert, Search, Delete, Traversal, File I/O) (BST.cpp)
-- [ ] Phần 3: Menu và Validate dữ liệu (main.cpp)
+- [x] Phần 3: Menu và Validate dữ liệu (main.cpp)
 - [ ] Phần 4: Test và đánh giá hiệu năng (test.cpp)
 - [ ] Video Demo: Giới thiệu hệ thống và cách sử dụng
 

@@ -1,0 +1,30 @@
+maMon: 9
+tenMon: e
+thoiGianBatDau: 76
+phongHoc: 5
+thu: 7
+
+maMon: CS101
+tenMon: Computer Scienece
+thoiGianBatDau: 130:130
+phongHoc: A101
+thu: 5
+
+maMon: CS102
+tenMon: Aomputer Scienece
+thoiGianBatDau: 130:130
+phongHoc: A101
+thu: 5
+
+maMon: CS145W
+tenMon: Tomputer Scienece
+thoiGianBatDau: 130:130
+phongHoc: A101
+thu: 5
+
+maMon: CS18998
+tenMon: Bomputer Scienece
+thoiGianBatDau: 130:130
+phongHoc: A101
+thu: 5
+
