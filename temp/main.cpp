@@ -1,121 +1,108 @@
 #include "bst.h"
 #include <iostream>
-#include <limits> 
-
+#include <vector>
+#include <limits>
+#include <regex>
+#include <sstream>
 using namespace std;
 
-void inMonHoc(const MonHoc& mh) {
-    cout << "\n------------------------\n";
-    cout << "Ma Mon: " << mh.maMon << "\n";
-    cout << "Ten Mon: " << mh.tenMon << "\n";
-    cout << "Thoi Gian Bat Dau: " << mh.thoiGianBatDau << "\n";
-    cout << "Phong Hoc: " << mh.phongHoc << "\n";
-    cout << "Thu: " << mh.thu << "\n";
-    cout << "------------------------\n";
-
+// ==================== HIEN THI ====================
+void hienThiMonHoc(MonHoc mh) {
+    cout << mh.maMon << " | " << mh.tenMon << " | "
+         << mh.thoiGianBatDau << " | " << mh.phongHoc << " | "
+         << mh.thu << endl;
 }
 
-int DisplayMenu() {
-    int choice;
-    cout << "\n====================================================\n";
-    cout << "         HE THONG LICH HOC VA THOI KHOA BIEU\n";
-    cout << "====================================================\n";
+// ==================== MENU ====================
+void printMenu() {
+    cout << "\n========== HE THONG LICH HOC VA THOI KHOA BIEU ==========\n\n";
     cout << "1. Them mon hoc moi vao lich hoc\n";
-    cout << "2. Tim kiem mon hoc theo ma mon\n";
-    cout << "3. Tim kiem mon hoc theo ten mon\n";
+    cout << "2. Tim kiem mon hoc (theo ma mon hoc)\n";
+    cout << "3. Tim kiem mon hoc (theo ten mon hoc)\n";
     cout << "4. Cap nhat thong tin mon hoc\n";
     cout << "5. Xoa mon hoc khoi lich hoc\n";
-    cout << "6. Hien thi thoi khoa bieu (A-Z)\n";
+    cout << "6. Hien thi thoi khoa bieu (theo ten mon hoc)\n";
     cout << "7. Hien thi thoi khoa bieu (theo thoi gian bat dau)\n";
-    cout << "0. Thoat\n";
-    cout << "----------------------------------------------------\n";
-    cout << "Nhap lua chon cua ban: ";
-
-    while (!(cin >> choice)) {
-        cout << "Vui long nhap lai\n ";
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    }
-    return choice;
+    cout << "0. Thoat chuong trinh\n";
+    cout << "\nLua chon cua ban: ";
 }
 
 int main() {
-    BST lichHoc;
-    lichHoc.Init();
+    BST tree;
+    tree.LoadFromFile("lichhoc.txt");
     int choice;
-    string searchKey;
 
     do {
-        choice = DisplayMenu();
+        printMenu();
+        cin >> choice;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         switch (choice) {
-        case 1: {
-            lichHoc.InsertWithInput();
-            break;
-        }
-		case 2: { 
-            cout <<"Nhap Ma Mon can tim: ";
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            getline(cin, searchKey);
-            Node* result = lichHoc.SearchMa(searchKey);
-            if (result) 
-                inMonHoc(result->data);
-            else
-                cout << " Khong tim thay mon hoc ";
-            break;
-        }
-		case 3: { 
-            cout << "Nhap Ten Mon can tim: ";
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            getline(cin, searchKey);
-            vector<MonHoc> results = lichHoc.SearchTen(searchKey);
-            if (!results.empty()) {
-                for (const auto& mh : results) {
-                    inMonHoc(mh);
-                }
-            }
-            else {
-                cout << " Khong tim thay mon hoc ";
-            }
-            break;
-        }
-        case 4: { 
-            cout << "Nhap Ma Mon can cap nhat: ";
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            getline(cin, searchKey);
+            case 1:
+                tree.InsertWithInput();
+                break;
 
-            if (lichHoc.Update(searchKey)) {
-                cout << "Da update thanh cong " ;
-            }
-            else {
-                cout << "Khong tim thay mon hoc ";
-            }
-            break;
+            case 2:
+                {
+                    string ma;
+                    cout << "Nhap ma mon can tim: ";
+                    cin >> ma;
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    Node* res = tree.SearchMa(ma);
+                    if (res) hienThiMonHoc(res->data);
+                    else cout << "Khong tim thay mon hoc.\n";
+                }
+                break;
+
+            case 3:
+                {
+                    string ten;
+                    cout << "Nhap ten mon can tim: ";
+                    getline(cin, ten);
+                    vector<MonHoc> res = tree.SearchTen(ten);
+                    if (res.empty()) cout << "Khong tim thay mon hoc.\n";
+                    else
+                        for (auto mh : res) hienThiMonHoc(mh);
+                }
+                break;
+
+            case 4:
+                {
+                    string ma;
+                    cout << "Nhap ma mon can cap nhat: ";
+                    getline(cin, ma);
+                    if (tree.Update(ma)) cout << "Cap nhat thanh cong.\n";
+                    else cout << "Khong tim thay mon hoc.\n";
+                }
+                break;
+
+            case 5:
+                {
+                    string ma;
+                    cout << "Nhap ma mon can xoa: ";
+                    cin >> ma;
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    if (tree.Delete(ma)) cout << "Xoa thanh cong.\n";
+                    else cout << "Xoa khong thanh cong.\n";
+                }
+                break;
+
+            case 6:
+                tree.inSchedule();
+                break;
+
+            case 7:
+                tree.inScheduleByTime();
+                break;
+
+            case 0:
+                cout << "\nThoat chuong trinh.\n\n";
+                break;
+
+            default:
+                cout << "Lua chon khong hop le.\n";
         }
-        case 5: { 
-            cout << "Nhap Ma Mon can xoa: ";
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            getline(cin, searchKey);
-            if (lichHoc.Delete(searchKey)) {
-                cout << " Da xoa mon hoc";
-            }
-            else {
-                cout << " Khong tim thay Ma Mon";
-            }
-            break;
-        }
-        case 6: { 
-            lichHoc.inSchedule();
-            break;
-        }
-        case 0: {
-            break;
-        }
-        default: {
-            cout << "\nVui long chon lai\n";
-            break;
-        }
-        }
+
     } while (choice != 0);
 
     return 0;
