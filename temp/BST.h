@@ -45,6 +45,9 @@ void SaveNode(Node* root, ofstream& out);
 void TraverseInOrder(Node* root);
 void CollectAllNodes(Node* root, vector<MonHoc>& list);
 
+// Forward declare BST for isTimeConflict
+struct BST;
+
 // Declarations of validation functions
 bool validateMaMon(string maMon);
 bool validateTenMon(string tenMon);

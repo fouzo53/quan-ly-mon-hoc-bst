@@ -6,14 +6,11 @@
 #include <sstream>
 using namespace std;
 
-// ==================== HIEN THI ====================
 void hienThiMonHoc(MonHoc mh) {
     cout << mh.maMon << " | " << mh.tenMon << " | "
          << mh.thoiGianBatDau << " | " << mh.phongHoc << " | "
-         << mh.thu << endl;
+         << mh.thu << "\n";
 }
-
-// ==================== MENU ====================
 void printMenu() {
     cout << "\n========== HE THONG LICH HOC VA THOI KHOA BIEU ==========\n\n";
     cout << "1. Them mon hoc moi vao lich hoc\n";
@@ -47,7 +44,7 @@ int main() {
                     string ma;
                     cout << "Nhap ma mon can tim: ";
                     cin >> ma;
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cin.ignore();
                     Node* res = tree.SearchMa(ma);
                     if (res) hienThiMonHoc(res->data);
                     else cout << "Khong tim thay mon hoc.\n";
@@ -70,7 +67,8 @@ int main() {
                 {
                     string ma;
                     cout << "Nhap ma mon can cap nhat: ";
-                    getline(cin, ma);
+                    cin >> ma;
+                    cin.ignore();
                     if (tree.Update(ma)) cout << "Cap nhat thanh cong.\n";
                     else cout << "Khong tim thay mon hoc.\n";
                 }
@@ -81,7 +79,7 @@ int main() {
                     string ma;
                     cout << "Nhap ma mon can xoa: ";
                     cin >> ma;
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cin.ignore();
                     if (tree.Delete(ma)) cout << "Xoa thanh cong.\n";
                     else cout << "Xoa khong thanh cong.\n";
                 }
@@ -102,7 +100,6 @@ int main() {
             default:
                 cout << "Lua chon khong hop le.\n";
         }
-
     } while (choice != 0);
 
     return 0;

@@ -12,7 +12,7 @@
 string filedata = "lichhoc.txt";
 using namespace std;
 
-// ==================== VALIDATE FUNCTIONS ====================
+// ==================== CÁC HÀM XỬ LÝ ĐỊNH DẠNG ====================
 bool validateMaMon(string maMon) {
     regex pattern("^[A-Za-z0-9]+$"); // only letters and numbers
     return !maMon.empty() && regex_match(maMon, pattern);
@@ -31,6 +31,10 @@ int timeToMinutes(const string& timeStr) {
 }
 
 bool validateThoiGian(string thoiGian) {
+    // giải thích:
+    // ^ và $ để đảm bảo khớp toàn bộ chuỗi
+    // HH:MM - HH:MM với HH từ 00 -> 23 và MM từ 00 -> 59
+    // ví dụ hợp lệ: 08:00 - 10:30
     regex pattern("^([01]?[0-9]|2[0-3]):([0-5][0-9]) - ([01]?[0-9]|2[0-3]):([0-5][0-9])$");
     if (!regex_match(thoiGian, pattern)) {
         cout << "Dinh dang thoi gian phai la HH:MM - HH:MM.\n";
@@ -125,15 +129,15 @@ string formatThu(string thu) {
 }
 
 string parseStartTime(string thoiGian) {
-    // Nếu có dạng "08:00 - 10:30", lấy phần đầu "08:00"
+    // Nếu có dạng "00:00 - 24:59", lấy phần đầu "00:00"
     size_t dashPos = thoiGian.find(" - ");
     if (dashPos != string::npos) {
         return thoiGian.substr(0, dashPos);
     }
-    // Nếu chỉ có "08:00", trả về như cũ
+    // Nếu chỉ có "00:00", trả về như cũ
     return thoiGian;
 }
-//ham thuat toan
+// ==================== CÁC HÀM THUẬT TOÁN BST ====================
 Node* InsertNode(Node* root, MonHoc mh) {
     if (root == NULL) return new Node(mh);
     if (mh.maMon < root->data.maMon)
@@ -149,23 +153,18 @@ Node* FindMin(Node* root) {
 }
 Node* DeleteNode(Node* root, string maMon, bool& deleted) {
     if (root == NULL) return NULL;
-    if (maMon < root->data.maMon) {
+    if (maMon < root->data.maMon) 
         root->left = DeleteNode(root->left, maMon, deleted);
-    }
-    else if (maMon > root->data.maMon) {
+    else if (maMon > root->data.maMon) 
         root->right = DeleteNode(root->right, maMon, deleted);
-    }
     else {
         deleted = true;
-        if (root->left == NULL && root->right == NULL) {
+        if (root->left == NULL && root->right == NULL)
             delete root; return NULL;
-        }
-        if (root->left == NULL) {
+        if (root->left == NULL)
             Node* temp = root->right; delete root; return temp;
-        }
-        if (root->right == NULL) {
+        if (root->right == NULL) 
             Node* temp = root->left; delete root; return temp;
-        }
         Node* successor = FindMin(root->right);
         root->data = successor->data;
         root->right = DeleteNode(root->right, successor->data.maMon, deleted);
@@ -236,7 +235,7 @@ void BST::InsertWithInput() {
     do {
         cout << "Nhap ma Mon: ";
         cin >> mh.maMon;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.ignore();
         if (!validateMaMon(mh.maMon))
             cout << "Ma mon khong hop le. Nhap lai.\n";
         else if (this->SearchMa(mh.maMon) != nullptr)
@@ -306,43 +305,73 @@ bool BST::Update(string maMon) {
     LoadFromFile(filedata);
     Node* node = SearchMa(maMon);
     if (node == NULL) return false;
-    cout << "Nhap ten mon moi: ";
-    getline(cin, node->data.tenMon);
-    cout << "Nhap thoi gian bat dau moi: ";
-    getline(cin, node->data.thoiGianBatDau);
-    cout << "Nhap phong hoc moi: ";
-    getline(cin, node->data.phongHoc);
-    cout << "Nhap thu moi: ";
-    getline(cin, node->data.thu);
+
+    MonHoc mh = node->data;
+
+    // cập nhập tên môn
+    do {
+        cout << "Nhap ten mon moi: ";
+        getline(cin, mh.tenMon);
+        if (!validateTenMon(mh.tenMon))
+            cout << "Dinh dang khong hop le. Nhap lai.\n";
+    } while (!validateTenMon(mh.tenMon));
+
+    // cập nhập phòng học
+    do {
+        cout << "Nhap phong hoc moi: ";
+        getline(cin, mh.phongHoc);
+        if (!validatePhongHoc(mh.phongHoc))
+            cout << "Phong hoc khong hop le. Nhap lai.\n";
+    } while (!validatePhongHoc(mh.phongHoc));
+
+    // cập nhập ngày mới
+    do {
+        cout << "Nhap thu moi: ";
+        getline(cin, mh.thu);
+        if (!validateThu(mh.thu))
+            cout << "Ngay khong hop le. Nhap lai.\n";
+    } while (!validateThu(mh.thu));
+
+    // cập nhập thời gian
+    do {
+        cout << "Nhap thoi gian moi (HH:MM - HH:MM): ";
+        getline(cin, mh.thoiGianBatDau);
+        if (!validateThoiGian(mh.thoiGianBatDau)) {
+            cout << "Thoi gian khong hop le. Nhap lai.\n";
+        } else if (isTimeConflict(*this, mh.thoiGianBatDau, mh.thu)) {
+            cout << "Trung thoi gian bat dau cua mon hoc khac. Nhap lai.\n";
+        }
+        else break;
+    } while (true);
+
     SaveToFile(filedata);
     return true;
 }
 
 void BST::LoadFromFile(string filename) {
-    root = NULL; // Clear the tree before loading
-    ifstream in(filedata);
-    if (!in) {
+    root = NULL; // xóa cây trước khi load
+    ifstream in(filename);
+    if (!in)
         return;
-    }
 
     string line;
     MonHoc mh;
 
     while (getline(in, line)) {
-        if (line.find("maMon: ") == 0)
+        if (!line.find("maMon: "))
             mh.maMon = line.substr(7);
-        else if (line.find("tenMon: ") == 0)
+        else if (!line.find("tenMon: "))
             mh.tenMon = line.substr(8);
-        else if (line.find("thoiGianBatDau: ") == 0)
+        else if (!line.find("thoiGianBatDau: "))
             mh.thoiGianBatDau = line.substr(16);
-        else if (line.find("phongHoc: ") == 0)
+        else if (!line.find("phongHoc: "))
             mh.phongHoc = line.substr(10);
-        else if (line.find("thu: ") == 0)
+        else if (!line.find("thu: "))
             mh.thu = line.substr(5);
         else if (line == "") {
-            if (!mh.maMon.empty()) {
+            // khi gặp dòng trống, chèn môn học vào cây và reset mh
+            if (!mh.maMon.empty())
                 Insert(mh);
-            }
             mh = MonHoc();
         }
     }
@@ -354,9 +383,9 @@ void BST::LoadFromFile(string filename) {
 }
 
 void BST::SaveToFile(string filename) {
-    ofstream out(filedata);
+    ofstream out(filename);
     if (!out) {
-        cout << " Khong mo dc file  ";
+        cout << "Khong mo duoc file.\n";
         return;
     }
     SaveNode(root, out);
@@ -365,13 +394,13 @@ void BST::SaveToFile(string filename) {
 
 void BST::inSchedule() {
     if (root == NULL) {
-        cout << "\nTHOI KHOA BIEU CHUA DC CAP NHAT\n";
+        cout << "\nTHOI KHOA BIEU CHUA DUOC CAP NHAT\n";
         return;
     }
     vector<MonHoc> list;
     CollectAllNodes(root, list);
 
-    // Sắp xếp: theo thứ, sau đó theo tên môn học
+    // sắp xếp: theo thứ, sau đó theo tên môn học
     sort(list.begin(), list.end(), [](const MonHoc& a, const MonHoc& b) {
         int thuA = getThuOrder(a.thu);
         int thuB = getThuOrder(b.thu);
@@ -379,7 +408,7 @@ void BST::inSchedule() {
         return a.tenMon < b.tenMon;
     });
 
-    // --- THAY ĐỔI Ở ĐÂY: Tính độ dài lớn nhất cho TOÀN BỘ danh sách ---
+    // tính độ dài lớn nhất cho TOÀN BỘ danh sách
     size_t globalMaxLength = 0;
     for (const auto& mh : list) {
         string courseInfo = mh.maMon + " - " + mh.tenMon;
@@ -390,27 +419,25 @@ void BST::inSchedule() {
     cout << "\n=========================================================\n";
     cout << "\nTHOI KHOA BIEU THEO TEN MON HOC\n\n";
 
-    // Nhóm và hiển thị theo thứ
+    // nhóm và hiển thị theo thứ
     map<int, vector<MonHoc>> groupedByThu;
     for (const auto& mh : list) {
         int thuOrder = getThuOrder(mh.thu);
         groupedByThu[thuOrder].push_back(mh);
     }
 
-    // Hiển thị theo thứ tự
+    // hiển thị theo thứ tự
     vector<int> thuOrders = {2, 3, 4, 5, 6, 7, 1}; // Thứ 2 đến CN
     for (int thuOrder : thuOrders) {
         if (groupedByThu.find(thuOrder) != groupedByThu.end()) {
             string thuName = formatThu(groupedByThu[thuOrder][0].thu);
             cout << thuName << ":\n";
 
-            // Không cần tính lại maxLength ở đây nữa
-
-            // Hiển thị với căn chỉnh theo globalMaxLength
+            // hiển thị với căn chỉnh theo globalMaxLength
             for (const auto& mh : groupedByThu[thuOrder]) {
                 string courseInfo = mh.maMon + " - " + mh.tenMon;
-                // Format: "  [thời gian]  |  [mã môn] - [tên môn] (padded)  |  Phòng [phòng]"
-                cout << "  " << left << setw(15) << mh.thoiGianBatDau // Cố định độ rộng cột thời gian (ví dụ 15 ký tự)
+                // format: "[thời gian] | [mã môn] - [tên môn] (padded) | Phòng [phòng]"
+                cout << "  " << left << setw(15) << mh.thoiGianBatDau // cố định độ rộng cột thời gian (ví dụ 15 ký tự)
                      << " | "
                      << left << setw(static_cast<int>(globalMaxLength)) << courseInfo
                      << " | "
@@ -430,7 +457,7 @@ void BST::inScheduleByTime() {
     vector<MonHoc> list;
     CollectAllNodes(root, list);
 
-    // Sắp xếp: theo thứ, sau đó theo thời gian bắt đầu
+    // sắp xếp: theo thứ, sau đó theo thời gian bắt đầu
     sort(list.begin(), list.end(), [](const MonHoc& a, const MonHoc& b) {
         int thuA = getThuOrder(a.thu);
         int thuB = getThuOrder(b.thu);
@@ -440,7 +467,7 @@ void BST::inScheduleByTime() {
         return timeA < timeB;
     });
 
-    // --- THAY ĐỔI Ở ĐÂY: Tính độ dài lớn nhất cho TOÀN BỘ danh sách ---
+    // tính độ dài lớn nhất cho TOÀN BỘ danh sách
     size_t globalMaxLength = 0;
     for (const auto& mh : list) {
         string courseInfo = mh.maMon + " - " + mh.tenMon;
@@ -452,25 +479,25 @@ void BST::inScheduleByTime() {
     cout << "\n=========================================================\n";
     cout << "\nTHOI KHOA BIEU THEO THOI GIAN BAT DAU\n\n";
 
-    // Nhóm và hiển thị theo thứ
+    // nhóm và hiển thị theo thứ
     map<int, vector<MonHoc>> groupedByThu;
     for (const auto& mh : list) {
         int thuOrder = getThuOrder(mh.thu);
         groupedByThu[thuOrder].push_back(mh);
     }
 
-    // Hiển thị theo thứ tự
+    // hiển thị theo thứ tự
     vector<int> thuOrders = {2, 3, 4, 5, 6, 7, 1}; // Thứ 2 đến CN
     for (int thuOrder : thuOrders) {
         if (groupedByThu.find(thuOrder) != groupedByThu.end()) {
             string thuName = formatThu(groupedByThu[thuOrder][0].thu);
             cout << thuName << ":\n";
 
-            // Hiển thị với căn chỉnh theo globalMaxLength
+            // hiển thị với căn chỉnh theo globalMaxLength
             for (const auto& mh : groupedByThu[thuOrder]) {
                 string courseInfo = mh.maMon + " - " + mh.tenMon;
 
-                // Format: "  [thời gian]  |  [mã môn] - [tên môn] (padded)  |  Phòng [phòng]"
+                // format: "[thời gian] | [mã môn] - [tên môn] (padded) | Phòng [phòng]"
                 cout << "  " << left << setw(13) << mh.thoiGianBatDau
                      << " | "
                      << left << setw(static_cast<int>(globalMaxLength)) << courseInfo
