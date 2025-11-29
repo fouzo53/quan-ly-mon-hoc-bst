@@ -14,7 +14,7 @@ using namespace std;
 
 // ==================== CÁC HÀM XỬ LÝ ĐỊNH DẠNG ====================
 bool validateMaMon(string maMon) {
-    regex pattern("^[A-Za-z0-9]+$"); // only letters and numbers
+    regex pattern("^[A-Za-z0-9]+$"); // chỉ chứa chữ và số
     return !maMon.empty() && regex_match(maMon, pattern);
 }
 
@@ -84,6 +84,27 @@ bool isTimeConflict(BST& tree, const string& newTimeStr, const string& newThu) {
     return false;
 }
 
+// Helper functions
+int getThuOrder(string thu) {
+    // giải thích:
+    // chuyển chuỗi về chữ thường để so sánh
+    // trả về thứ tự tương ứng
+    // Chu nhat = 1, Thu 2 = 2, ..., Thu 7 = 7
+    // nếu không hợp lệ trả về 0
+    // ví dụ: "Thu 2" -> 2, "chu nhat" -> 1
+    string thuLower = thu;
+    transform(thuLower.begin(), thuLower.end(), thuLower.begin(), ::tolower);
+
+    if (thuLower.find("chu nhat") != string::npos || thuLower.find("chủ nhật") != string::npos) return 1;
+    if (thuLower.find("2") != string::npos) return 2;
+    if (thuLower.find("3") != string::npos) return 3;
+    if (thuLower.find("4") != string::npos) return 4;
+    if (thuLower.find("5") != string::npos) return 5;
+    if (thuLower.find("6") != string::npos) return 6;
+    if (thuLower.find("7") != string::npos) return 7;
+    return 0;
+}
+
 bool validateThu(string thu) {
     vector<string> validThu = { "Thu 2","Thu 3","Thu 4","Thu 5","Thu 6","Thu 7","Chu nhat",
                                 "thu 2","thu 3","thu 4","thu 5","thu 6","thu 7","chu nhat",
@@ -97,21 +118,6 @@ bool validateThu(string thu) {
 
 bool validatePhongHoc(string phong) {
     return !phong.empty();
-}
-
-// Helper functions
-int getThuOrder(string thu) {
-    string thuLower = thu;
-    transform(thuLower.begin(), thuLower.end(), thuLower.begin(), ::tolower);
-
-    if (thuLower.find("chu nhat") != string::npos || thuLower.find("chủ nhật") != string::npos) return 1;
-    if (thuLower.find("2") != string::npos) return 2;
-    if (thuLower.find("3") != string::npos) return 3;
-    if (thuLower.find("4") != string::npos) return 4;
-    if (thuLower.find("5") != string::npos) return 5;
-    if (thuLower.find("6") != string::npos) return 6;
-    if (thuLower.find("7") != string::npos) return 7;
-    return 0;
 }
 
 string formatThu(string thu) {
@@ -159,12 +165,20 @@ Node* DeleteNode(Node* root, string maMon, bool& deleted) {
         root->right = DeleteNode(root->right, maMon, deleted);
     else {
         deleted = true;
-        if (root->left == NULL && root->right == NULL)
-            delete root; return NULL;
-        if (root->left == NULL)
-            Node* temp = root->right; delete root; return temp;
-        if (root->right == NULL) 
-            Node* temp = root->left; delete root; return temp;
+        if (root->left == NULL && root->right == NULL) {
+            delete root;
+            return NULL;
+        }
+        if (root->left == NULL) {
+            Node* temp = root->right;
+            delete root;
+            return temp;
+        }
+        if (root->right == NULL) {
+            Node* temp = root->left;
+            delete root;
+            return temp;
+        }
         Node* successor = FindMin(root->right);
         root->data = successor->data;
         root->right = DeleteNode(root->right, successor->data.maMon, deleted);
@@ -259,16 +273,16 @@ void BST::InsertWithInput() {
 
     do {
         cout << "Nhap thu: ";
-        getline(cin, mh.thu);
-        if (!validateThu(mh.thu))
+        cin >> mh.thu;
+        cin.ignore();
+        if (!getThuOrder(mh.thu))
             cout << "Ngay khong hop le. Nhap lai.\n";
-    } while (!validateThu(mh.thu));
+    } while (!getThuOrder(mh.thu));
 
     do {
         cout << "Nhap thoi gian (HH:MM - HH:MM): ";
         getline(cin, mh.thoiGianBatDau);
         if (!validateThoiGian(mh.thoiGianBatDau)) {
-            // validateThoiGian will print the specific error
             cout << "Thoi gian khong hop le. Nhap lai.\n";
         } else if (isTimeConflict(*this, mh.thoiGianBatDau, mh.thu)) {
             cout << "Trung thoi gian bat dau cua mon hoc khac. Nhap lai.\n";
@@ -375,10 +389,8 @@ void BST::LoadFromFile(string filename) {
             mh = MonHoc();
         }
     }
-    if (!mh.maMon.empty()) {
+    if (!mh.maMon.empty())
         Insert(mh);
-    }
-
     in.close();
 }
 
