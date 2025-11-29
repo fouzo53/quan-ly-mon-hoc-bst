@@ -7,7 +7,7 @@
 using namespace std;
 
 void hienThiMonHoc(MonHoc mh) {
-    cout << mh.maMon << " | " << mh.tenMon << " | "
+    cout << "\n" << mh.maMon << " | " << mh.tenMon << " | "
          << mh.thoiGianBatDau << " | " << mh.phongHoc << " | "
          << mh.thu << "\n";
 }
@@ -20,8 +20,8 @@ void printMenu() {
     cout << "5. Xoa mon hoc khoi lich hoc\n";
     cout << "6. Hien thi thoi khoa bieu (theo ten mon hoc)\n";
     cout << "7. Hien thi thoi khoa bieu (theo thoi gian bat dau)\n";
-    cout << "0. Thoat chuong trinh\n";
-    cout << "\nLua chon cua ban: ";
+    cout << "0. Thoat chuong trinh\n\n";
+    cout << "Lua chon cua ban: ";
 }
 
 int main() {
@@ -32,7 +32,7 @@ int main() {
     do {
         printMenu();
         cin >> choice;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.ignore();
 
         switch (choice) {
             case 1:
@@ -47,7 +47,7 @@ int main() {
                     cin.ignore();
                     Node* res = tree.SearchMa(ma);
                     if (res) hienThiMonHoc(res->data);
-                    else cout << "Khong tim thay mon hoc.\n";
+                    else cout << "\nKhong tim thay mon hoc.\n";
                 }
                 break;
 
@@ -57,7 +57,7 @@ int main() {
                     cout << "Nhap ten mon can tim: ";
                     getline(cin, ten);
                     vector<MonHoc> res = tree.SearchTen(ten);
-                    if (res.empty()) cout << "Khong tim thay mon hoc.\n";
+                    if (res.empty()) cout << "\nKhong tim thay mon hoc.\n";
                     else
                         for (auto mh : res) hienThiMonHoc(mh);
                 }
@@ -67,10 +67,9 @@ int main() {
                 {
                     string ma;
                     cout << "Nhap ma mon can cap nhat: ";
-                    cin >> ma;
-                    cin.ignore();
+                    getline(cin, ma);
                     if (tree.Update(ma)) cout << "Cap nhat thanh cong.\n";
-                    else cout << "Khong tim thay mon hoc.\n";
+                    else cout << "\nKhong tim thay mon hoc.\n";
                 }
                 break;
 
@@ -80,8 +79,8 @@ int main() {
                     cout << "Nhap ma mon can xoa: ";
                     cin >> ma;
                     cin.ignore();
-                    if (tree.Delete(ma)) cout << "Xoa thanh cong.\n";
-                    else cout << "Xoa khong thanh cong.\n";
+                    if (tree.Delete(ma)) cout << "\nXoa thanh cong.\n";
+                    else cout << "\nXoa khong thanh cong.\n";
                 }
                 break;
 
@@ -98,8 +97,9 @@ int main() {
                 break;
 
             default:
-                cout << "Lua chon khong hop le.\n";
+                cout << "\nLua chon khong hop le.\n";
         }
+
     } while (choice != 0);
 
     return 0;
