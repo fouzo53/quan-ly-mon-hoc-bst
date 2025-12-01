@@ -220,17 +220,24 @@ void SaveNode(Node* root, ofstream& out) {
 //          << "Phong: " << mh.phongHoc << endl;
 // }
 
-// hàm in ra danh sách theo mã môn học (hiện tại hàm này không dùng đến)
-// void TraverseInOrder(Node* root) {
-//     if (root == NULL) return;
-//     TraverseInOrder(root->left);
-//     cout << "--------------------------------\n";
-//     cout << "Ma Mon: " << root->data.maMon << "\n";
-//     cout << "Ten Mon: " << root->data.tenMon << "\n";
-//     cout << "Thoi gian: " << root->data.thoiGianBatDau << " (" << root->data.thu << ")" << "\n";
-//     cout << "Phong: " << root->data.phongHoc << "\n";
-//     TraverseInOrder(root->right);
-// }
+void Traverse(Node* root) {
+    if (root == NULL) return;
+    Traverse(root->left);
+    volatile string temp = root->data.maMon; 
+    Traverse(root->right);
+}
+
+// hàm in ra danh sách theo mã môn học
+void BST::InOrderTraversal() {
+    if (root == NULL) return;
+    Traverse(root->left);
+    cout << "--------------------------------\n";
+    cout << "Ma Mon: " << root->data.maMon << "\n";
+    cout << "Ten Mon: " << root->data.tenMon << "\n";
+    cout << "Thoi gian: " << root->data.thoiGianBatDau << " (" << root->data.thu << ")" << "\n";
+    cout << "Phong: " << root->data.phongHoc << "\n";
+    Traverse(root->right);
+}
 
 void CollectAllNodes(Node* root, vector<MonHoc>& list) {
     if (root == NULL) return;

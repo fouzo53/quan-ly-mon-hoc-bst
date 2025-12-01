@@ -8,11 +8,11 @@
 
 using namespace std;
 struct MonHoc {
-    string maMon;
-    string tenMon;
-    string thoiGianBatDau;
-    string phongHoc;
-    string thu;
+    string maMon;          // khóa chính
+    string tenMon;         // tên hiển thị
+    string thoiGianBatDau; // định dạng hh:mm - hh:mm
+    string phongHoc;       // địa điểm
+    string thu;            // ngày học trong tuần
 
     MonHoc() {}
     MonHoc(string ma, string ten, string tg, string phong, string th) {
@@ -42,7 +42,7 @@ Node* DeleteNode(Node* root, string maMon, bool& deleted);
 Node* SearchByMa(Node* root, string maMon);
 void SearchByTen(Node* root, string tenMon, vector<MonHoc>& result);
 void SaveNode(Node* root, ofstream& out);
-void TraverseInOrder(Node* root);
+void Traverse(Node* root);
 void CollectAllNodes(Node* root, vector<MonHoc>& list);
 
 // Forward declare BST for isTimeConflict
@@ -59,7 +59,7 @@ bool validatePhongHoc(string phong);
 struct BST {
     Node* root;
     BST() : root(NULL) {}
-    // void Init() { root = NULL; }
+    void Init() { root = NULL; }
     bool IsEmpty() { return root == NULL; }
     void Insert(MonHoc mh);
     void InsertWithInput();
@@ -71,5 +71,6 @@ struct BST {
     void SaveToFile(string filename);
     void inSchedule();
     void inScheduleByTime();
+    void InOrderTraversal();
 };
 #endif
