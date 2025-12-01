@@ -87,7 +87,7 @@ MonHoc taoMonHocNgauNhien(int index) {
     ss << setfill('0') << setw(2) << startHour << ":" << setw(2) << startMinute
        << " - "
        << setfill('0') << setw(2) << endHour << ":" << setw(2) << endMinute;
-    mh.thoiGianBatDau = ss.str();
+    mh.thoiGianBatDau = ss.str();   
 
     return mh;
 }
@@ -229,6 +229,9 @@ void xuatGoiYAxis(const vector<KetQuaTest>& ds, ofstream& out) {
         << ",(Thực tế: " << minSor << " - " << maxSor << ")\n";
 }
 
+void luuKetQuaVaoFile(const string &fileName, const vector<KetQuaTest> &dsKq);
+void luuVaoLichHocTxt(const string &fileName, const vector<MonHoc> &dsMon);
+
 void inKetQuaTest(const KetQuaTest &kq) {
     cout << left << setw(10) << kq.soLuong
          << setw(15) << fixed << setprecision(4) << kq.tInsert_ms
@@ -251,6 +254,24 @@ void luuKetQuaVaoFile(const string &fileName, const vector<KetQuaTest> &dsKq) {
              << kq.tSort_ms << "\n";            // cột 5: thời gian Sort (ms)
     }
     xuatGoiYAxis(dsKq, fout);
+    fout.close();
+}
+
+void luuVaoLichHocTxt(const string &fileName, const vector<MonHoc> &dsMon) {
+    ofstream fout(fileName);
+    if (!fout.is_open()) {
+        cout << "Loi: Khong the mo file " << fileName << " de ghi.\n";
+        return;
+    }
+    
+    // ghi từng môn học vào file theo định dạng
+    for (const auto& mh : dsMon) {
+        fout << "maMon: " << mh.maMon << "\n"
+             << "tenMon: " << mh.tenMon << "\n"
+             << "thoiGianBatDau: " << mh.thoiGianBatDau << "\n"
+             << "phongHoc: " << mh.phongHoc << "\n"
+             << "thu: " << mh.thu << "\n\n";
+    }
     fout.close();
 }
 
@@ -316,6 +337,21 @@ int main() {
     if (ch == 'y' || ch == 'Y') {
         luuKetQuaVaoFile("ket_qua_hieu_nang.csv", dsKq);
         cout << "Da xuat ket qua hieu nang ra file ket_qua_hieu_nang.csv\n";
+    }
+
+    cout << "Ban co muon tao du lieu cho file lichhoc.txt? (y/n): ";
+    cin >> ch;
+    cin.ignore();
+    if (ch == 'y' || ch == 'Y') {
+        int n;
+        cout << "Nhap so luong mon hoc can tao: ";
+        cin >> n;
+        if (n > 0) {
+            vector<MonHoc> dsLichHoc = taoDuLieuMau(n);
+            luuVaoLichHocTxt("lichhoc.txt", dsLichHoc);
+            cout << "Da tao file lichhoc.txt voi " << n << " mon hoc.\n";
+        } else
+            cout << "So luong khong hop le.\n";
     }
 
     return 0;

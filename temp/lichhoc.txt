@@ -1,168 +1,60 @@
-maMon: IT201
-tenMon: Nhap mon Lap trinh
-thoiGianBatDau: 07:00 - 09:00
-phongHoc: A101
-thu: Thu 2
-
-maMon: IT203
-tenMon: Co so du lieu
-thoiGianBatDau: 13:00 - 15:00
-phongHoc: C303
-thu: Thu 2
-
-maMon: IT204
-tenMon: Kien truc may tinh
-thoiGianBatDau: 16:00 - 18:00
-phongHoc: D404
-thu: Thu 2
-
-maMon: IT205
+maMon: HIST0
 tenMon: He dieu hanh
-thoiGianBatDau: 08:00 - 10:00
-phongHoc: E505
+thoiGianBatDau: 14:30 - 17:00
+phongHoc: Lab A1
 thu: Thu 3
 
-maMon: IT206
-tenMon: Mang may tinh
-thoiGianBatDau: 11:00 - 13:00
-phongHoc: F606
-thu: Thu 3
+maMon: BIO1
+tenMon: Lap trinh C++
+thoiGianBatDau: 17:00 - 19:30
+phongHoc: Lab B2
+thu: Chu nhat
 
-maMon: IT207
-tenMon: Tri tue nhan tao
-thoiGianBatDau: 14:00 - 16:00
-phongHoc: G707
-thu: Thu 3
+maMon: HIST2
+tenMon: Tieng Anh chuyen nganh
+thoiGianBatDau: 12:30 - 15:30
+phongHoc: Lab A1
+thu: Chu nhat
 
-maMon: IT208
-tenMon: Phat trien ung dung web
-thoiGianBatDau: 17:00 - 19:00
-phongHoc: H808
-thu: Thu 3
-
-maMon: IT209
-tenMon: Phan tich thiet ke he thong
-thoiGianBatDau: 07:00 - 09:00
-phongHoc: A102
+maMon: HIST3
+tenMon: Tieng Anh chuyen nganh
+thoiGianBatDau: 07:30 - 10:30
+phongHoc: B202
 thu: Thu 4
 
-maMon: IT210
-tenMon: Lap trinh huong doi tuong
+maMon: BIO4
+tenMon: He dieu hanh
+thoiGianBatDau: 16:30 - 19:30
+phongHoc: A101
+thu: Chu nhat
+
+maMon: CS5
+tenMon: He dieu hanh
+thoiGianBatDau: 18:00 - 20:30
+phongHoc: C303
+thu: Thu 3
+
+maMon: PHY6
+tenMon: He dieu hanh
 thoiGianBatDau: 10:00 - 12:00
-phongHoc: B203
-thu: Thu 4
-
-maMon: IT211
-tenMon: Phat trien phan mem
-thoiGianBatDau: 13:00 - 15:00
-phongHoc: C304
-thu: Thu 4
-
-maMon: IT212
-tenMon: An toan thong tin
-thoiGianBatDau: 16:00 - 18:00
-phongHoc: D405
-thu: Thu 4
-
-maMon: IT213
-tenMon: May hoc
-thoiGianBatDau: 08:00 - 10:00
-phongHoc: E506
+phongHoc: B202
 thu: Thu 5
 
-maMon: IT214
-tenMon: Xu ly anh so
-thoiGianBatDau: 11:00 - 13:00
-phongHoc: F607
-thu: Thu 5
-
-maMon: IT215
-tenMon: Phan tich du lieu lon
-thoiGianBatDau: 14:00 - 16:00
-phongHoc: G808
-thu: Thu 5
-
-maMon: IT216
-tenMon: Thiet ke giao dien
-thoiGianBatDau: 17:00 - 19:00
-phongHoc: H909
-thu: Thu 5
-
-maMon: IT217
-tenMon: Lap trinh di dong
-thoiGianBatDau: 07:00 - 09:00
-phongHoc: I010
-thu: Thu 6
-
-maMon: IT218
-tenMon: Khoa hoc du lieu
-thoiGianBatDau: 10:00 - 12:00
-phongHoc: J111
-thu: Thu 6
-
-maMon: IT219
-tenMon: Thiet ke web nang cao
-thoiGianBatDau: 13:00 - 15:00
-phongHoc: K212
-thu: Thu 6
-
-maMon: IT220
-tenMon: Lap trinh Python
-thoiGianBatDau: 16:00 - 18:00
-phongHoc: L313
-thu: Thu 6
-
-maMon: IT221
-tenMon: Tri tue nhan tao nang cao
-thoiGianBatDau: 08:00 - 10:00
-phongHoc: M414
+maMon: HIST7
+tenMon: Vat ly dai cuong
+thoiGianBatDau: 08:00 - 10:30
+phongHoc: C303
 thu: Thu 7
 
-maMon: IT222
-tenMon: Phat trien ung dung doanh nghiep
-thoiGianBatDau: 11:00 - 13:00
-phongHoc: N515
-thu: Thu 7
+maMon: BIO8
+tenMon: Co so du lieu
+thoiGianBatDau: 17:30 - 20:00
+phongHoc: B202
+thu: Thu 3
 
-maMon: IT223
-tenMon: Lap trinh Java
-thoiGianBatDau: 14:00 - 16:00
-phongHoc: O616
-thu: Thu 7
-
-maMon: IT224
-tenMon: Co so tri thuc
-thoiGianBatDau: 17:00 - 19:00
-phongHoc: P717
-thu: Thu 7
-
-maMon: IT225
-tenMon: Lap trinh Ruby
-thoiGianBatDau: 07:00 - 09:00
-phongHoc: Q818
-thu: Chu nhat
-
-maMon: IT226
-tenMon: Lap trinh Go
-thoiGianBatDau: 10:00 - 12:00
-phongHoc: R919
-thu: Chu nhat
-
-maMon: IT227
-tenMon: Lap trinh Swift
-thoiGianBatDau: 13:00 - 15:00
-phongHoc: S020
-thu: Chu nhat
-
-maMon: IT228
-tenMon: Lap trinh PHP
-thoiGianBatDau: 16:00 - 18:00
-phongHoc: T121
-thu: Chu nhat
-
-maMon: jf85943f
-tenMon: 84fhir3ehvfirev
-thoiGianBatDau: 20:10 - 23:22
-phongHoc: 398213f
-thu: 3
+maMon: CS9
+tenMon: Nhap mon lap trinh
+thoiGianBatDau: 12:30 - 14:30
+phongHoc: Lab A1
+thu: Thu 3
 
