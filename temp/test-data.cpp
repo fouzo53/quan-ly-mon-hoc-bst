@@ -95,7 +95,7 @@ MonHoc taoMonHocNgauNhien(int index) {
 // hàm tạo danh sách dữ liệu mẫu (mock data gerenator)
 vector<MonHoc> taoDuLieuMau(int n) {
     vector<MonHoc> ds;
-    // cấp phát trước bộ nhớ ít nhất bằng kích thước soLuong để tránh vector phải resize nhiều lần khi thêm phần tử (tối ưu tốc độ)
+    // cấp phát trước bộ nhớ ít nhất bằng kích thước n để tránh vector phải resize nhiều lần khi thêm phần tử (tối ưu tốc độ)
     ds.reserve(n);
     for (int i = 0; i < n; i++)
         ds.push_back(taoMonHocNgauNhien(i));
