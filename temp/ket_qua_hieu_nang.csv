@@ -1,0 +1,11 @@
+Số môn học, Insert (ms), Search (ms), Sort (ms)
+10,0.026,0.0001732,0.033
+100,0.088,0.0005178,0.083
+1000,1.048,0.0004502,1.081
+
+
+GIỚI HẠN TỐC ĐỘ HIỆU NĂNG TỐI THIỂU/TỐI ĐA
+, Min, Max, Ghi chú
+Insert (ms),0.02,1.1,(Thực tế: 0.026 - 1.048)
+Search (ms),0,0.01,(Thực tế: 0.0001732 - 0.0005178)
+Sort (ms),0.03,1.1,(Thực tế: 0.033 - 1.081)

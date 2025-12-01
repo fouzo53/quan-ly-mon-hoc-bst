@@ -165,31 +165,20 @@ struct GioiHanTruc {
 };
 
 GioiHanTruc tinhMocBieuDo(double thucTeMin, double thucTeMax) {
-GioiHanTruc gh;
+    GioiHanTruc gh;
     
-    // 1. Xử lý MAX (Làm tròn LÊN - Ceiling)
-    if (thucTeMax > 100)
-        gh.maxVal = ceil(thucTeMax / 10) * 10;      // Ví dụ: 115 -> 120
-    else if (thucTeMax > 10)
-        gh.maxVal = ceil(thucTeMax);                // Ví dụ: 15.7 -> 16.0
-    else if (thucTeMax > 1)
-        gh.maxVal = ceil(thucTeMax * 10) / 10.0;    // Ví dụ: 3.42 -> 3.5
-    else
-        gh.maxVal = ceil(thucTeMax * 100) / 100.0;  // Ví dụ: 0.28 -> 0.29
+    // Làm tròn LÊN đến 2 chữ số thập phân cho max
+    // Ví dụ: 15.711 -> ceil(1571.1) -> 1572 -> 15.72
+    gh.maxVal = ceil(thucTeMax * 100.0) / 100.0;
 
-    // 2. Xử lý MIN (Làm tròn XUỐNG - Floor)
-    if (thucTeMin > 100)
-        gh.minVal = floor(thucTeMin / 10) * 10;
-    else if (thucTeMin > 10)
-        gh.minVal = floor(thucTeMin);
-    else if (thucTeMin > 1)
-        gh.minVal = floor(thucTeMin * 10) / 10.0;
-    else
-        // Ví dụ: 0.035 -> 0.03
-        gh.minVal = floor(thucTeMin * 100) / 100.0; 
+    // Làm tròn XUỐNG đến 2 chữ số thập phân cho min
+    // Ví dụ: 3.429 -> floor(342.9) -> 342 -> 3.42
+    gh.minVal = floor(thucTeMin * 100.0) / 100.0;
     
-    // Đảm bảo min không âm nếu dữ liệu dương
-    if (thucTeMin >= 0 && gh.minVal < 0) gh.minVal = 0;
+    // Đảm bảo min không âm nếu dữ liệu gốc là số dương
+    if (thucTeMin >= 0 && gh.minVal < 0) {
+        gh.minVal = 0;
+    }
 
     return gh;
 }
@@ -216,17 +205,19 @@ void xuatGoiYAxis(const vector<KetQuaTest>& ds, ofstream& out) {
     GioiHanTruc axisSea = tinhMocBieuDo(minSea, maxSea);
     GioiHanTruc axisSor = tinhMocBieuDo(minSor, maxSor);
 
+    out << fixed << setprecision(2); // Thiết lập làm tròn 2 chữ số thập phân cho toàn bộ output stream
+
     out << "\n\nGIỚI HẠN TỐC ĐỘ HIỆU NĂNG TỐI THIỂU/TỐI ĐA\n";
-    out << "Loai_Bieu_Do,Axis_Min,Axis_Max,Ghi_Chu\n";
+    out << ",Min,Max,Min Thực Tế,Max Thực Tế\n";
     
-    out << "Insert_Chart," << axisIns.minVal << "," << axisIns.maxVal 
-        << ",(Thực tế: " << minIns << " - " << maxIns << ")\n";
+    out << "Insert (ms)," << axisIns.minVal << "," << axisIns.maxVal 
+        << "," << minIns << "," << maxIns << "\n";
         
-    out << "Search_Chart," << axisSea.minVal << "," << axisSea.maxVal 
-        << ",(Thực tế: " << minSea << " - " << maxSea << ")\n";
+    out << "Search (ms)," << axisSea.minVal << "," << axisSea.maxVal 
+        << "," << minSea << "," << maxSea << "\n";
         
-    out << "Sort_Chart," << axisSor.minVal << "," << axisSor.maxVal 
-        << ",(Thực tế: " << minSor << " - " << maxSor << ")\n";
+    out << "Sort (ms)," << axisSor.minVal << "," << axisSor.maxVal 
+        << "," << minSor << "," << maxSor << "\n";
 }
 
 void luuKetQuaVaoFile(const string &fileName, const vector<KetQuaTest> &dsKq);
@@ -245,7 +236,7 @@ void luuKetQuaVaoFile(const string &fileName, const vector<KetQuaTest> &dsKq) {
     if (!fout.is_open()) return;
 
     // fout << "SoMonHoc, Insert_ms, Search_avg_us, Traversal_ms, Sort_ms\n";
-    fout << "SoMonHoc, Insert_ms, Search_avg_ms, Sort_ms\n";
+    fout << "Số môn học, Insert (ms), Search (ms), Sort (ms)\n";
     for (const auto &kq : dsKq) {
         fout << kq.soLuong << ","               // cột 1: số lượng
              << kq.tInsert_ms << ","            // cột 2: thời gian Insert (ms)
