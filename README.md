@@ -16,10 +16,10 @@ Hệ thống quản lý lịch học và thời khóa biểu sử dụng cây BS
 
 ```
 cpp/
-├── BST.h          # Khai báo struct MonHoc, Node và function prototypes
-├── BST.cpp        # Implementation các hàm BST (Insert, Search, Delete, Traversal, File I/O)
+├── bst.h          # Khai báo struct MonHoc, Node và function prototypes
+├── bst.cpp        # Implementation các hàm BST (Insert, Search, Delete, Traversal, File I/O)
 ├── main.cpp       # Menu điều khiển và Validate dữ liệu
-├── test.cpp       # Test cases và đo hiệu năng
+├── test-data.cpp  # Test cases và đo hiệu năng
 └── README.md      # File này
 ```
 
@@ -58,7 +58,7 @@ lich-hoc.exe
 
 ```bash
 # Biên dịch
-g++ BST.cpp BST.h main.cpp -o lich-hoc.exe
+g++ bst.cpp bst.h main.cpp -o lich-hoc.exe
 
 # Chạy chương trình
 ./lich-hoc.exe
@@ -83,11 +83,11 @@ test.exe
 ```
 ========== HE THONG LICH HOC VA THOI KHOA BIEU ==========
 1. Them mon hoc moi vao lich hoc
-2. Tim kiem mon hoc (theo ma mon)
-3. Tim kiem mon hoc (theo ten mon)
+2. Tim kiem mon hoc (theo ma mon hoc)
+3. Tim kiem mon hoc (theo ten mon hoc)
 4. Cap nhap thong tin mon hon
 5. Xoa mon hoc khoi lich hoc
-6. Hien thi thoi khoa bieu (A-Z)
+6. Hien thi thoi khoa bieu (theo ten mon hoc)
 7. Hien thi thoi khoa bieu (theo thoi gian bat dau)
 0. Thoat chuong trinh
 ```
@@ -137,10 +137,10 @@ lichHoc.InOrderTraversalByTime();
 
 ```cpp
 // Lưu thời khóa biểu vào file
-lichHoc.SaveToFile("thoi-khoa-bieu.txt");
+lichHoc.SaveToFile("lichhoc.txt");
 
 // Đọc thời khóa biểu từ file
-lichHoc.LoadFromFile("thoi-khoa-bieu.txt");
+lichHoc.LoadFromFile("lichhoc.txt");
 ```
 
 ### Format File Thời Khóa Biểu
@@ -191,7 +191,7 @@ g++ -std=c++11 -DRUN_TEST -o test test.cpp BST.cpp
 - ✅ Test với **10 môn học** trong thời khóa biểu
 - ✅ Test với **100 môn học** trong thời khóa biểu  
 - ✅ Test với **1000 môn học** trong thời khóa biểu
-- ✅ Đo thời gian Insert, Search, Traversal, Sort
+- ✅ Đo thời gian Insert, Search, Sort
 - ✅ So sánh hiệu năng với số lượng môn học khác nhau
 
 ### Kết Quả Mong Đợi
@@ -216,8 +216,8 @@ g++ -std=c++11 -DRUN_TEST -o test test.cpp BST.cpp
 - [x] Phần 1: Khai báo struct MonHoc, Node và hàm Init() (BST.h)
 - [x] Phần 2: Các hàm BST (Insert, Search, Delete, Traversal, File I/O) (BST.cpp)
 - [x] Phần 3: Menu và Validate dữ liệu (main.cpp)
-- [ ] Phần 4: Test và đánh giá hiệu năng (test.cpp)
-- [ ] Video Demo: Giới thiệu hệ thống và cách sử dụng
+- [x] Phần 4: Test và đánh giá hiệu năng (test.cpp)
+- [x] Video Demo: Giới thiệu hệ thống và cách sử dụng
 
 ## 📝 Validation Dữ Liệu
 
@@ -277,6 +277,6 @@ Educational purposes only
 
 ⭐ Nếu project này hữu ích, hãy cho một star! ⭐
 
-📧 **Liên hệ**: [Điền email hoặc GitHub username]
+📧 **Liên hệ**: [@fouzo53]
 
-📅 **Ngày tạo**: 2024
+📅 **Ngày tạo**: 2025

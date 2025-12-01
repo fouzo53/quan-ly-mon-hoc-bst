@@ -1,0 +1,300 @@
+maMon: HIST0
+tenMon: He dieu hanh
+thoiGianBatDau: 14:30 - 17:00
+phongHoc: Lab A1
+thu: Thu 3
+
+maMon: BIO1
+tenMon: Lap trinh C++
+thoiGianBatDau: 17:00 - 19:30
+phongHoc: Lab B2
+thu: Chu nhat
+
+maMon: HIST2
+tenMon: Tieng Anh chuyen nganh
+thoiGianBatDau: 12:30 - 15:30
+phongHoc: Lab A1
+thu: Chu nhat
+
+maMon: HIST3
+tenMon: Tieng Anh chuyen nganh
+thoiGianBatDau: 07:30 - 10:30
+phongHoc: B202
+thu: Thu 4
+
+maMon: BIO4
+tenMon: He dieu hanh
+thoiGianBatDau: 16:30 - 19:30
+phongHoc: A101
+thu: Chu nhat
+
+maMon: CS5
+tenMon: He dieu hanh
+thoiGianBatDau: 18:00 - 20:30
+phongHoc: C303
+thu: Thu 3
+
+maMon: PHY6
+tenMon: He dieu hanh
+thoiGianBatDau: 10:00 - 12:00
+phongHoc: B202
+thu: Thu 5
+
+maMon: HIST7
+tenMon: Vat ly dai cuong
+thoiGianBatDau: 08:00 - 10:30
+phongHoc: C303
+thu: Thu 7
+
+maMon: BIO8
+tenMon: Co so du lieu
+thoiGianBatDau: 17:30 - 20:00
+phongHoc: B202
+thu: Thu 3
+
+maMon: CS9
+tenMon: Nhap mon lap trinh
+thoiGianBatDau: 12:30 - 14:30
+phongHoc: Lab A1
+thu: Thu 3
+
+maMon: ENG10
+tenMon: Co so du lieu
+thoiGianBatDau: 18:00 - 20:00
+phongHoc: Lab A1
+thu: Thu 3
+
+maMon: ENG11
+tenMon: Tieng Anh chuyen nganh
+thoiGianBatDau: 15:00 - 17:00
+phongHoc: A101
+thu: Chu nhat
+
+maMon: CHEM12
+tenMon: Tri tue nhan tao
+thoiGianBatDau: 14:30 - 17:00
+phongHoc: Lab A1
+thu: Thu 4
+
+maMon: ENG13
+tenMon: Vat ly dai cuong
+thoiGianBatDau: 14:00 - 16:00
+phongHoc: C303
+thu: Chu nhat
+
+maMon: CS14
+tenMon: Tri tue nhan tao
+thoiGianBatDau: 14:00 - 15:30
+phongHoc: Lab A1
+thu: Thu 2
+
+maMon: ENG15
+tenMon: He dieu hanh
+thoiGianBatDau: 12:00 - 15:00
+phongHoc: Lab B2
+thu: Chu nhat
+
+maMon: CHEM16
+tenMon: Tri tue nhan tao
+thoiGianBatDau: 09:00 - 12:00
+phongHoc: A101
+thu: Thu 6
+
+maMon: BIO17
+tenMon: Co so du lieu
+thoiGianBatDau: 08:30 - 10:30
+phongHoc: B202
+thu: Thu 4
+
+maMon: ECON18
+tenMon: Lap trinh C++
+thoiGianBatDau: 15:30 - 18:30
+phongHoc: D404
+thu: Thu 3
+
+maMon: CS19
+tenMon: Nhap mon lap trinh
+thoiGianBatDau: 11:30 - 14:00
+phongHoc: Lab B2
+thu: Chu nhat
+
+maMon: MATH20
+tenMon: Cau truc du lieu
+thoiGianBatDau: 16:00 - 19:00
+phongHoc: B202
+thu: Thu 3
+
+maMon: IT21
+tenMon: Vat ly dai cuong
+thoiGianBatDau: 09:00 - 11:30
+phongHoc: A102
+thu: Thu 2
+
+maMon: CS22
+tenMon: Lap trinh C++
+thoiGianBatDau: 07:30 - 10:00
+phongHoc: Lab A1
+thu: Thu 4
+
+maMon: ENG23
+tenMon: Toan cao cap
+thoiGianBatDau: 15:30 - 17:00
+phongHoc: Lab B2
+thu: Chu nhat
+
+maMon: ENG24
+tenMon: Cau truc du lieu
+thoiGianBatDau: 10:30 - 12:00
+phongHoc: Lab B2
+thu: Chu nhat
+
+maMon: ECON25
+tenMon: Tri tue nhan tao
+thoiGianBatDau: 14:30 - 17:00
+phongHoc: B202
+thu: Thu 7
+
+maMon: ENG26
+tenMon: Toan cao cap
+thoiGianBatDau: 11:00 - 14:00
+phongHoc: B202
+thu: Thu 2
+
+maMon: CS27
+tenMon: Nhap mon lap trinh
+thoiGianBatDau: 07:00 - 10:00
+phongHoc: A101
+thu: Thu 2
+
+maMon: PHY28
+tenMon: Co so du lieu
+thoiGianBatDau: 18:00 - 20:00
+phongHoc: D404
+thu: Chu nhat
+
+maMon: CS29
+tenMon: Nhap mon lap trinh
+thoiGianBatDau: 08:30 - 10:00
+phongHoc: Lab A1
+thu: Thu 5
+
+maMon: PHY30
+tenMon: Toan cao cap
+thoiGianBatDau: 16:30 - 19:30
+phongHoc: C303
+thu: Thu 6
+
+maMon: MATH31
+tenMon: Tri tue nhan tao
+thoiGianBatDau: 16:30 - 19:30
+phongHoc: C303
+thu: Chu nhat
+
+maMon: ECON32
+tenMon: Toan cao cap
+thoiGianBatDau: 17:30 - 20:00
+phongHoc: B202
+thu: Thu 3
+
+maMon: ECON33
+tenMon: Tri tue nhan tao
+thoiGianBatDau: 15:00 - 17:30
+phongHoc: Lab A1
+thu: Thu 4
+
+maMon: MATH34
+tenMon: Lap trinh C++
+thoiGianBatDau: 12:00 - 14:30
+phongHoc: B202
+thu: Thu 7
+
+maMon: IT35
+tenMon: Cau truc du lieu
+thoiGianBatDau: 10:30 - 13:30
+phongHoc: C303
+thu: Thu 6
+
+maMon: ECON36
+tenMon: Lap trinh C++
+thoiGianBatDau: 14:00 - 16:00
+phongHoc: B202
+thu: Thu 7
+
+maMon: CHEM37
+tenMon: Cau truc du lieu
+thoiGianBatDau: 12:30 - 15:30
+phongHoc: Lab A1
+thu: Thu 6
+
+maMon: ECON38
+tenMon: He dieu hanh
+thoiGianBatDau: 10:30 - 12:30
+phongHoc: A102
+thu: Thu 2
+
+maMon: HIST39
+tenMon: Lap trinh C++
+thoiGianBatDau: 13:30 - 16:00
+phongHoc: A102
+thu: Thu 5
+
+maMon: ENG40
+tenMon: Tri tue nhan tao
+thoiGianBatDau: 10:00 - 13:00
+phongHoc: B202
+thu: Thu 4
+
+maMon: HIST41
+tenMon: Tri tue nhan tao
+thoiGianBatDau: 16:00 - 19:00
+phongHoc: B201
+thu: Thu 5
+
+maMon: IT42
+tenMon: Vat ly dai cuong
+thoiGianBatDau: 11:30 - 14:30
+phongHoc: C303
+thu: Thu 2
+
+maMon: BIO43
+tenMon: Nhap mon lap trinh
+thoiGianBatDau: 08:30 - 10:00
+phongHoc: D404
+thu: Thu 3
+
+maMon: MATH44
+tenMon: Toan cao cap
+thoiGianBatDau: 17:00 - 20:00
+phongHoc: D404
+thu: Thu 6
+
+maMon: HIST45
+tenMon: Mang may tinh
+thoiGianBatDau: 09:30 - 12:00
+phongHoc: C303
+thu: Chu nhat
+
+maMon: CS46
+tenMon: Mang may tinh
+thoiGianBatDau: 11:00 - 12:30
+phongHoc: A102
+thu: Chu nhat
+
+maMon: CHEM47
+tenMon: Vat ly dai cuong
+thoiGianBatDau: 10:00 - 12:00
+phongHoc: B202
+thu: Thu 5
+
+maMon: ECON48
+tenMon: Lap trinh C++
+thoiGianBatDau: 17:30 - 20:00
+phongHoc: D404
+thu: Thu 4
+
+maMon: IT49
+tenMon: Co so du lieu
+thoiGianBatDau: 11:00 - 14:00
+phongHoc: Lab B2
+thu: Thu 5
+
