@@ -6,11 +6,6 @@
 #include <sstream>
 using namespace std;
 
-void hienThiMonHoc(MonHoc mh) {
-    cout << "\n" << mh.maMon << " | " << mh.tenMon << " | "
-         << mh.thoiGianBatDau << " | " << mh.phongHoc << " | "
-         << mh.thu << "\n";
-}
 void printMenu() {
     cout << "\n========== HE THONG LICH HOC VA THOI KHOA BIEU ==========\n\n";
     cout << "1. Them mon hoc moi vao lich hoc\n";

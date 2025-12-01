@@ -9,8 +9,9 @@
 #include <map>
 #include <regex>
 
-string filedata = "lichhoc.txt";
 using namespace std;
+
+string filedata = "lichhoc.txt";
 
 // ==================== CÁC HÀM XỬ LÝ ĐỊNH DẠNG ====================
 bool validateMaMon(string maMon) {
@@ -140,11 +141,11 @@ string parseStartTime(string thoiGian) {
     if (dashPos != string::npos) {
         return thoiGian.substr(0, dashPos);
     }
-    // Nếu chỉ có "00:00", trả về như cũ
+    // Nếu chỉ có phần đầu "00:00", trả về như cũ
     return thoiGian;
 }
 // ==================== CÁC HÀM THUẬT TOÁN BST ====================
-Node* InsertNode(Node* root, MonHoc mh) {
+Node* InsertNode(Node* root, const MonHoc &mh) {
     if (root == NULL) return new Node(mh);
     if (mh.maMon < root->data.maMon)
         root->left = InsertNode(root->left, mh);
@@ -202,13 +203,13 @@ void SearchByTen(Node* root, string tenMon, vector<MonHoc>& result) {
 
 void SaveNode(Node* root, ofstream& out) {
     if (root == NULL) return;
-    SaveNode(root->left, out);
     out << "maMon: " << root->data.maMon << "\n";
     out << "tenMon: " << root->data.tenMon << "\n";
     out << "thoiGianBatDau: " << root->data.thoiGianBatDau << "\n";
     out << "phongHoc: " << root->data.phongHoc << "\n";
     out << "thu: " << root->data.thu << "\n";
     out << "\n";
+    SaveNode(root->left, out);
     SaveNode(root->right, out);
 }
 
@@ -220,24 +221,30 @@ void SaveNode(Node* root, ofstream& out) {
 //          << "Phong: " << mh.phongHoc << endl;
 // }
 
-void Traverse(Node* root) {
-    if (root == NULL) return;
-    Traverse(root->left);
-    volatile string temp = root->data.maMon; 
-    Traverse(root->right);
+void hienThiMonHoc(MonHoc mh) {
+    cout << "\n" << mh.maMon << " | " << mh.tenMon << " | "
+         << mh.thoiGianBatDau << " | " << mh.phongHoc << " | "
+         << mh.thu << "\n";
 }
 
+// void Traverse(Node* root) {
+//     if (root == NULL) return;
+//     Traverse(root->left);
+//     volatile string temp = root->data.maMon; 
+//     Traverse(root->right);
+// }
+
 // hàm in ra danh sách theo mã môn học
-void BST::InOrderTraversal() {
-    if (root == NULL) return;
-    Traverse(root->left);
-    cout << "--------------------------------\n";
-    cout << "Ma Mon: " << root->data.maMon << "\n";
-    cout << "Ten Mon: " << root->data.tenMon << "\n";
-    cout << "Thoi gian: " << root->data.thoiGianBatDau << " (" << root->data.thu << ")" << "\n";
-    cout << "Phong: " << root->data.phongHoc << "\n";
-    Traverse(root->right);
-}
+// void InOrderTraversal() {
+//     if (root == NULL) return;
+//     Traverse(root->left);
+//     cout << "--------------------------------\n";
+//     cout << "Ma Mon: " << root->data.maMon << "\n";
+//     cout << "Ten Mon: " << root->data.tenMon << "\n";
+//     cout << "Thoi gian: " << root->data.thoiGianBatDau << " (" << root->data.thu << ")" << "\n";
+//     cout << "Phong: " << root->data.phongHoc << "\n";
+//     Traverse(root->right);
+// }
 
 void CollectAllNodes(Node* root, vector<MonHoc>& list) {
     if (root == NULL) return;
@@ -246,8 +253,9 @@ void CollectAllNodes(Node* root, vector<MonHoc>& list) {
     CollectAllNodes(root->right, list);
 }
 
-//ham giao tiep nn
-void BST::Insert(MonHoc mh) {
+// ==================== PHƯƠNG THỨC LỚP BST ====================
+
+void BST::Insert(const MonHoc &mh) {
     root = InsertNode(root, mh);
 }
 
@@ -303,31 +311,41 @@ void BST::InsertWithInput() {
 }
 
 Node* BST::SearchMa(string maMon) {
-    LoadFromFile(filedata);
     return SearchByMa(root, maMon);
 }
 
 vector<MonHoc> BST::SearchTen(string tenMon) {
-    LoadFromFile(filedata);
     vector<MonHoc> result;
     SearchByTen(root, tenMon, result);
     return result;
 }
 
 bool BST::Delete(string maMon) {
-    LoadFromFile(filedata);
     bool deleted = false;
     root = DeleteNode(root, maMon, deleted);
     SaveToFile(filedata);
     return deleted;
 }
 
+// hàm đệ quy xóa từng node từ lá lên gốc
+void BST::deleteTree(Node* node) {
+    if (node == NULL) return;
+    deleteTree(node->left);
+    deleteTree(node->right);
+    delete node; // Xóa node hiện tại
+}
+
+// destructor tự động gọi khi biến tree hết vòng đời
+BST::~BST() {
+    deleteTree(root);
+}
+
 bool BST::Update(string maMon) {
-    LoadFromFile(filedata);
+    // LoadFromFile(filedata);
     Node* node = SearchMa(maMon);
     if (node == NULL) return false;
 
-    MonHoc mh = node->data;
+    MonHoc& mh = node->data;
 
     // cập nhập tên môn
     do {

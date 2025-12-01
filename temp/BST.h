@@ -29,21 +29,22 @@ struct Node {
     Node* left;
     Node* right;
 
-    Node(MonHoc mh) {
+    Node(const MonHoc &mh) {
         data = mh;
         left = NULL;
         right = NULL;
     }
 };
 
-Node* InsertNode(Node* root, MonHoc mh);
+Node* InsertNode(Node* root, const MonHoc &mh);
 Node* FindMin(Node* root);
 Node* DeleteNode(Node* root, string maMon, bool& deleted);
 Node* SearchByMa(Node* root, string maMon);
 void SearchByTen(Node* root, string tenMon, vector<MonHoc>& result);
 void SaveNode(Node* root, ofstream& out);
-void Traverse(Node* root);
 void CollectAllNodes(Node* root, vector<MonHoc>& list);
+void hienThiMonHoc(MonHoc mh);
+// void Traverse(Node* root);
 
 // Forward declare BST for isTimeConflict
 struct BST;
@@ -59,9 +60,11 @@ bool validatePhongHoc(string phong);
 struct BST {
     Node* root;
     BST() : root(NULL) {}
+    ~BST();
+    void deleteTree(Node* node);
     void Init() { root = NULL; }
     bool IsEmpty() { return root == NULL; }
-    void Insert(MonHoc mh);
+    void Insert(const MonHoc &mh);
     void InsertWithInput();
     Node* SearchMa(string maMon);
     vector<MonHoc> SearchTen(string tenMon);
@@ -71,6 +74,5 @@ struct BST {
     void SaveToFile(string filename);
     void inSchedule();
     void inScheduleByTime();
-    void InOrderTraversal();
 };
 #endif
